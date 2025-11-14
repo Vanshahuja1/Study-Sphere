@@ -17,6 +17,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "plugins": [
       {
         "name": "next"
@@ -29,8 +35,9 @@
     ".next\\dev/types/**/*.ts",
     "**/*.mts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/(root)/auth/page.jsx"  ],
+    "**/*.tsx",
+    "src/app/(root)/auth/page.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]
