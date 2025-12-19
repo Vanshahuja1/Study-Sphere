@@ -37,7 +37,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/(root)/auth/page.jsx"
-, "src/app/student/[id]/page.js"  ],
+, "src/app/student/[id]/page.js", "src/app/educator/courses/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

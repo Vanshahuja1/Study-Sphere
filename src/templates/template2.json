@@ -1,0 +1,253 @@
+{
+  "name": "Coaching Template 2",
+ 
+  "pages": {
+    "home": {
+      "sections": [
+        {
+          "type": "header2",
+          "props": {
+            "logo": "/logo.png",
+            "menu": [
+              {
+                "label": "Home",
+                "link": "#home"
+              },
+              {
+                "label": "Courses",
+                "link": "#courses"
+              },
+              {
+                "label": "About",
+                "link": "#about"
+              },
+              {
+                "label": "Contact",
+                "link": "#contact"
+              }
+            ],
+            "cta": "Join Now"
+          }
+        },
+        {
+          "type": "hero2",
+          "props": {
+            "title": "Transform Your Learning Journey",
+            "subtitle": "Join 50,000+ students learning with our interactive courses.",
+            "button": "Start Learning",
+            "image": "/hero1.png"
+          }
+        },
+        
+        {
+          "type": "courses",
+          "props": {
+            "heading": "Popular Courses",
+            "items": [
+              {
+                "name": "Full-Stack Web Development",
+                "price": "₹4999"
+              },
+              {
+                "name": "Data Science Bootcamp",
+                "price": "₹6999"
+              },
+              {
+                "name": "Digital Marketing Mastery",
+                "price": "₹3999"
+              }
+            ]
+          }
+        },
+        {
+          "type": "about",
+          "props": {
+            "title": "About Our Coaching Center",
+            "description": "We have been teaching students for over 10 years."
+          }
+        },
+        {
+          "type": "footer2",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              {
+                "label": "Home",
+                "link": "#home"
+              },
+              {
+                "label": "About",
+                "link": "#about"
+              },
+              {
+                "label": "Courses",
+                "link": "#courses"
+              },
+              {
+                "label": "Contact",
+                "link": "#contact"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    
+    "about": {
+      "sections": [
+        {
+          "type": "header2",
+          "props": {
+            "logo": "/logo.png",
+            "menu": [
+              {
+                "label": "Home",
+                "link": "#home"
+              },
+              {
+                "label": "Courses",
+                "link": "#courses"
+              },
+              {
+                "label": "About",
+                "link": "#about"
+              },
+              {
+                "label": "Contact",
+                "link": "#contact"
+              }
+            ],
+            "cta": "Join Now"
+          }
+        },
+        
+        {
+          "type": "about",
+          "props": {
+            "title": "About Our Coaching Center",
+            "description": "We have been teaching students for over 10 years."
+          }
+        },
+        {
+          "type": "footer2",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              {
+                "label": "Home",
+                "link": "#home"
+              },
+              {
+                "label": "About",
+                "link": "#about"
+              },
+              {
+                "label": "Courses",
+                "link": "#courses"
+              },
+              {
+                "label": "Contact",
+                "link": "#contact"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "courses": {
+      "sections": [
+        {
+          "type": "header2",
+          "props": {
+            "logo": "/logo.png",
+            "menu": [
+              {
+                "label": "Home",
+                "link": "#home"
+              },
+              {
+                "label": "Courses",
+                "link": "#courses"
+              },
+              {
+                "label": "About",
+                "link": "#about"
+              },
+              {
+                "label": "Contact",
+                "link": "#contact"
+              }
+            ],
+            "cta": "Join Now"
+          }
+        },
+        {
+          "type": "courses",
+          "props": {
+            "heading": "All Courses",
+            "items": [
+              {
+                "name": "Web Development",
+                "price": "₹4999"
+              },
+              {
+                "name": "Data Science",
+                "price": "₹6999"
+              },
+              {
+                "name": "UI/UX Design",
+                "price": "₹2999"
+              }
+            ]
+          }
+        },
+        {
+          "type": "footer2"
+        }
+      ]
+    },
+    
+    "contact": {
+      "sections": [
+        {
+          "type": "header2",
+          "props": {
+            "logo": "/logo.png",
+            "menu": [
+              {
+                "label": "Home",
+                "link": "#home"
+              },
+              {
+                "label": "Courses",
+                "link": "#courses"
+              },
+              {
+                "label": "About",
+                "link": "#about"
+              },
+              {
+                "label": "Contact",
+                "link": "#contact"
+              }
+            ],
+            "cta": "Join Now"
+          }
+        },
+        {
+          "type": "contact",
+          "props": {
+            "phone": "9876543210",
+            "email": "support@myacademy.com",
+            "address": "New Delhi, India"
+          }
+        },
+        {
+          "type": "footer2"
+        }
+      ]
+    }
+  }
+}

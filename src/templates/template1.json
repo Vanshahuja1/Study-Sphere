@@ -1,0 +1,182 @@
+{
+  "name": "Coaching Template 1",
+  
+  "pages": {
+    "home": {
+      "sections": [
+        {
+          "type": "header",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ],
+            "cta": "Join Now"
+          }
+        },
+        {
+          "type": "hero",
+          "props": {
+            "title": "Grow your Coaching",
+            "subtitle": "Build your online Coaching business",
+            "image": "/hero1.jpg"
+          }
+        },
+        {
+          "type": "about",
+          "props": {
+            "title": "About Us",
+            "description": "We provide top exam preparation courses"
+          }
+        },
+        {
+          "type": "courses",
+          "props": {
+            "items": [
+              { "name": "SSC Coaching", "price": "₹4999" },
+              { "name": "Banking Coaching", "price": "₹5999" },
+              { "name": "IAS Coaching", "price": "₹7999" },
+              { "name": "IAS Coaching", "price": "₹7999" },
+              { "name": "IAS Coaching", "price": "₹7999" }
+            ]
+          }
+        },
+        
+        {
+           "type": "footer",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ]
+          }
+        }
+      ]
+    },
+
+    "about": {
+      "sections": [
+        {
+          "type": "header",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ]
+          }
+        },
+    
+        {
+          "type": "about",
+          "props": {
+            "title": "About Our Coaching Center",
+            "description": "We have been teaching students for over 10 years."
+          }
+          
+        },
+        {
+           "type": "footer",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ]
+          }
+        }
+      ]
+    },
+
+    "courses": {
+      "sections": [
+        {
+         "type": "header",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ]
+          }
+        },
+        {
+          "type": "courses",
+          "props": {
+            "items": [
+              { "name": "SSC Coaching", "price": "₹4999" },
+              { "name": "Banking Coaching", "price": "₹5999" },
+              { "name": "Railway Coaching", "price": "₹3999" }
+            ]
+          }
+        },{
+           "type": "footer",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ]
+          }
+        }
+      ]
+    },
+
+    "contact": {
+      "sections": [
+        {"type": "header",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ]
+          }},
+        {
+          "type": "contact",
+          "props": {
+            "phone": "123456789",
+            "email": "Coaching1@gmail.com",
+            "address": "New Delhi"
+          }
+        },
+         {
+           "type": "footer",
+          "props": {
+            "logo": "/next.svg",
+            "title": "Coaching 1",
+            "menu": [
+              { "label": "Home", "link": "#home" },
+              { "label": "About", "link": "#about" },
+              { "label": "Courses", "link": "#courses" },
+              { "label": "Contact", "link": "#contact" }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
