@@ -209,7 +209,7 @@ export default function PreviewPage() {
     setSelectedFont(fontName);
   };
 
-  return <main className="flex flex-col w-full bg-gray-300">
+  return <main className="flex flex-col w-full bg-gray-50">
 
     <EditPageHeader
       pages={pageKeys}

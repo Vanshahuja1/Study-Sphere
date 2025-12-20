@@ -5,7 +5,7 @@ import { File, Folder, Camera, Speaker, Volume2, Cuboid, PlusCircle } from "luci
 export default function CourseOverview() {
     return (
         <>
-            <main className="bg-gray-200 w-full">
+            <main className="bg-gray-100 w-full">
                 <Header heading='Course Overview' para="Overview the content of your course"></Header>
                 <section className="w-full bg-white py-7">
                     <div className="container ps-8 mx-auto">

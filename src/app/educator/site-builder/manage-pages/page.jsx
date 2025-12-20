@@ -13,7 +13,7 @@ export default function managePages() {
     
     return (
         <>
-        <main className="flex flex-col w-full bg-gray-300">
+        <main className="flex flex-col w-full bg-gray-50">
             
             <Header heading='Manage Your Website Pages' para='You can add ,remove or edit content of all pages' ></Header>
             <section className="w-full py-5">

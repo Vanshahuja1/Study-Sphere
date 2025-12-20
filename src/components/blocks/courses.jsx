@@ -2,7 +2,7 @@ import { LucideBook } from "lucide-react"
 export default function Courses({ items=[],textColor,font}) {
 
     return (
-        <section className={`w-full py-15 bg-gray-100 ${font}`}>
+        <section className={`w-full py-15 bg-white ${font}`}>
             <div className="container font-bold mx-auto max-w-5xl px-5 items-center flex flex-col text-white">
                 <h1 className={`text-3xl flex items-center gap-4 ${textColor} text-blue-500`}>Our Courses <LucideBook className="w-10 h-8 "></LucideBook></h1>
                 <div className="flex gap-5 my-5">

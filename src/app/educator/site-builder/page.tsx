@@ -14,12 +14,12 @@ export default function EducatorSiteBuilder({ searchParams }) {
     const router = useRouter()
 
     return <>
-        <main className="flex flex-col w-full bg-gray-300">
+        <main className="flex flex-col w-full bg-gray-50">
 
             {/* <h1>Educator / Site Builder</h1>; */}
             <Header heading='Start Creating your Website' para='You can choose the template for all pages' ></Header>
             {/* website section */}
-            <section className="w-full bg-gray-300 py-5">
+            <section className="w-full py-5">
                 <div className="container max-w-5xl mx-auto">
                     {/* <div className="flex gap-2">
                         {webPages.map((item, index) => {
@@ -35,7 +35,7 @@ export default function EducatorSiteBuilder({ searchParams }) {
                         {templatesMeta.map(item => (
                             <div key={item.id} onClick={() => router.push(`/educator/site-builder/manage-pages?template=${item.id}`)}
                                 className="cursor-pointer bg-white rounded-lg shadow-lg hover:shadow-2xl overflow-hidden">
-                                <div className="h-40 bg-gray-200 flex items-center justify-center">
+                                <div className="h-40 bg-white flex items-center justify-center">
                                     {item.preview ? <img src={item.preview} className="h-full w-full object-cover" alt={item.name} /> : <span>Preview</span>}
                                 </div>
                                 <div className="p-4">

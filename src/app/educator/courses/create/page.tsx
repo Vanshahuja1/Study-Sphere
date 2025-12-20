@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header"
 import greenTick from '../../../../../public/greenTick-c3c873ac..svg'
 import Image from "next/image"
+import { LucideArrowRight, PlusCircle } from "lucide-react"
 export default function EducatorCreateCourse() {
   return <main className="bg-gray-50 w-full">
     <Header heading='Create Courses' para='Add/View content of your course' ></Header>
@@ -19,8 +20,8 @@ export default function EducatorCreateCourse() {
 
             </div>
           </div>
-          <div className="w-1/3">
-            <div className="bg-gray-200 p-5 h-85 rounded-2xl">
+          <div className="w-1/4">
+            <div className="bg-gray-100 p-5 h-85 rounded-2xl">
               <h2 className="font-bold text-lg text-gray-700 my-3">Features</h2>
               <ul className="flex gap-3 flex-col">
                 <li className="flex gap-2"> <Image src={greenTick} width={20} height={20} alt="green tick"></Image> Allow offline download</li>
@@ -41,26 +42,29 @@ export default function EducatorCreateCourse() {
         <div className="flex gap-45">
           <div className="flex flex-col gap-2 my-4">
             <label htmlFor="Description" className="font-bold text-lg text-gray-700">Category</label>
-            <select name="" id="" className="border border-gray-400 px-7  py-2 rounded">
-
+            <select name="" id="" className="border border-gray-400 px-7 bg-white  py-2 rounded-2xl">
               <option value="">Bank Exams</option>
-              <option value="">Bank Exams</option>
-              <option value="">Bank Exams</option>
-              <option value="">Bank Exams</option>
+              <option value="">UPSC Exmas</option>
+              <option value="">SSC Exams</option>
             </select>
           </div>
           <div className="flex flex-col gap-2 my-4">
             <label htmlFor="Description" className="font-bold text-lg text-gray-700">Sub Category</label>
-            <select name="" id="" className="border border-gray-400 px-7  py-2 rounded">
-              <option value="">Bank Exams</option>
-              <option value="">Bank Exams</option>
-              <option value="">Bank Exams</option>
-              <option value="">Bank Exams</option>
+            <select name="" id="" className="border border-gray-400 px-7 bg-white  py-2 rounded-2xl">
+              <option value="">Geography</option>
+              <option value="">History</option>
+              <option value="">Political science</option>
             </select>
           </div>
+
+
         </div>
+        <p className="text-sm my-2 text-primary flex  gap-1 font-bold cursor-pointer"> <PlusCircle className="h-5 w-5"></PlusCircle>Add more Categories</p>
       </div>
     </section>
-
+    <footer className="bg-white w-full px-5 py-4 sticky bottom-0 flex justify-between">
+      <button className="border border-primary text-primary cursor-pointer rounded-2xl px-7 py-2">Previous</button>
+      <button className="bg-primary text-white cursor-pointer rounded-2xl px-9 py-2 hover:font-bold ">Next</button>
+    </footer>
   </main>
 }
