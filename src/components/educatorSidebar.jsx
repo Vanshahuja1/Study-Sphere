@@ -1,37 +1,140 @@
 'use client'
-import { ArrowRightFromLine, Book, Globe, Landmark,LayoutDashboard, Pen, UserCircle2Icon } from 'lucide-react';
+import { ArrowRightFromLine, Book, Globe, Landmark, LayoutDashboard, Pen, UserCircle2Icon, TabletSmartphone, User, MessageCircleMore, FileArchive, LucideWebhook, SpeechIcon, Users, LucideChartColumn } from 'lucide-react';
 import Image from 'next/image';
+import { motion } from "framer-motion"
 import { usePathname } from 'next/navigation';
+import { Separator } from '@radix-ui/react-separator';
 import Link from 'next/link';
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { is } from 'date-fns/locale';
 export const EducatorSideBar = () => {
     const pathname = usePathname()
-    
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+            },
+        },
+    }
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 10 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3 },
+        }
+    }
+    const ListItem = ({ pathName, heading, icon }) => {
+        return <Link href={pathName}><li className={`flex gap-2 hover:text-primary hover:bg-indigo-200 rounded-2xl py-3 px-3  ${pathname === pathName ? 'text-primary font-semibold bg-gradient-to-r from-purple-300 to-indigo-300' : ''}`}>{icon}{heading}</li></Link>
+    }
+    const isCoursesBranch = pathname.startsWith("/educator/courses")
+    const isPeopleBranch = pathname.startsWith("/educator/people")
     return (
         <>
-            <div className="sticky left-0 z-10 top-0 shadow-2xl bg-white h-screen w-80 overflow-y-auto overflow-x-visible  ">
-                <div className="container w-full h-full py-3 px-7">
+            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="sticky left-0 z-10 top-0 shadow-2xl bg-white h-screen w-80 overflow-y-auto overflow-x-visible  ">
+                <div className="container w-full h-full py-3 px-5">
                     {/* <h1 className="text-3xl text-primary font-bold my-5">StudySphere</h1> */}
                     <Image src={'/logo.png'} width={175} height={100} alt='logo'></Image>
                     {/* overview */}
 
-                    <div className="flex flex-col my-5 gap-6 text-gray-700 ">
-                        <h3 className="text-xl font-bold text-primary">Overview</h3>
-                        <Link href={'/educator/'}><li className={`flex gap-2 hover:text-primary ${pathname==='/dashboard'?'text-primary font-bold':''}`}><Landmark className='self-center' /> Dashboard</li></Link>
-                        <Link href={'/educator/site-builder'}> <li className={`flex gap-2 hover:text-primary ${pathname==='/website'?'text-primary font-bold':''}`}><Globe className='self-center' /> Website</li></Link>
-                        <Link href={'/educator/courses'}><li className={` flex gap-2 hover:text-primary ${pathname==='/courses'?'text-primary font-bold':''}`}> <Book className='self-center' />Course</li></Link>
-                        {/* <div className="absolute shadow-2xl before:h-[20] before:absolute before:top-3 before:right-38 before:transform before:z-20 before:bg-amber-200 before:rotate-45 before:w-[15px] before:content-['']  top-70 z-9999 w-40 left-30 py-8 px-5  bg-amber-200">
-                            <p>My Courses</p>
-                            <p>Global Courses</p>
-                            </div> */}
-                        <Link href={'/content'}> <li className={`flex gap-2 hover:text-primary ${pathname==='/content'?'text-primary font-bold':''}`}> <Pen className='self-center' /> Content</li></Link>
-                        <Link href={'/apps'}><li className={`flex gap-2 hover:text-primary ${pathname==='/apps'?'text-primary font-bold':''}`}><Globe className='self-center' />Apps</li></Link>
-                        <li className='flex gap-2 hover:text-primary'><Landmark className='self-center' />Landing Page</li>
-                        <li className='flex gap-2 hover:text-primary'><Landmark className='self-center' />1:1 sessions</li>
-                        <li className='flex gap-2 hover:text-primary'><Landmark className='self-center' />Chat</li>
-                        <li className='flex gap-2 hover:text-primary'><Landmark className='self-center' />Analytics</li>
-                        <li className='flex gap-2 hover:text-primary'><Landmark className='self-center' />Integration</li>
-                        <li className='flex gap-2 hover:text-primary'><Landmark className='self-center' />Campaigns</li>
-                        <li className='flex gap-2 hover:text-primary'><Landmark className='self-center' />People</li>
+                    <div className="flex flex-col my-5 gap-1  text-gray-700 ">
+                        <h3 className="text-xl font-bold text-primary mb-2 px-2">Overview</h3>
+                        <ListItem pathName={'/educator'} heading='Dashboard' icon={<LayoutDashboard />}></ListItem>
+                        <ListItem pathName={'/educator/site-builder'} heading='Website' icon={<Globe />}></ListItem>
+                        {/* <Link href={'/educator/'}><li className={`flex gap-2 hover:text-primary ${pathname === '/educator' ? 'text-primary font-bold' : ''}`}><LayoutDashboard className='self-center' /> Dashboard</li></Link> */}
+
+                        {/* <Link href={'/educator/site-builder'}> <li className={`flex gap-2 hover:text-primary ${pathname === '/educator/site-builder' ? 'text-primary font-bold' : ''}`}><Globe className='self-center' /> Website</li></Link> */}
+
+                        <HoverCard>
+                            <HoverCardTrigger asChild>
+                                <li className={`inline-flex gap-2 w-45 rounded-2xl p-3 hover:text-primary hover:bg-indigo-200 cursor-pointer ${isCoursesBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-300 to-indigo-300' : ''}`}> <Book className='self-center' />Courses</li>
+                            </HoverCardTrigger>
+                            <HoverCardContent side="right"
+                                align="start"
+                                className="z-50 w-40">
+                                <Link href={'/educator/courses/global-courses'}>
+                                    <p className=''>Global Courses</p>
+                                </Link>
+                                <Separator className='my-2 bg-gray-200 h-px '></Separator>
+                                <Link href={'/educator/courses'}>
+                                    <p>My Courses</p>
+                                </Link>
+                                <div className="absolute bg-white border-s border-b top-2 -left-2 h-4 w-4 rotate-45" />
+                            </HoverCardContent>
+                        </HoverCard>
+
+                        <ListItem pathName={'/educator/content'} heading='Content' icon={<Pen />}></ListItem>
+
+                        <ListItem pathName={'/educator/app'} heading='Your App' icon={<TabletSmartphone />}></ListItem>
+                        <ListItem pathName={'/educator/user'} heading='1:1 Sessions' icon={<User />}></ListItem>
+                        <ListItem pathName={'/educator/landing-page'} heading='Landing Page' icon={<Landmark />}></ListItem>
+                        <ListItem pathName={'/educator/chat'} heading='Chat' icon={<MessageCircleMore />}></ListItem>
+                        <ListItem pathName={'/educator/free-material'} heading='Free Material' icon={<FileArchive />}></ListItem>
+                        <ListItem pathName={'/educator/analytics'} heading='Analytics' icon={<LucideChartColumn />}></ListItem>
+                        <ListItem pathName={'/educator/integration'} heading='Integration' icon={<LucideWebhook />}></ListItem>
+                        <ListItem pathName={'/educator/campaigns'} heading='Campaigns' icon={<SpeechIcon />}></ListItem>
+                        <HoverCard>
+                            <HoverCardTrigger asChild>
+                                <li className={`inline-flex gap-2 w-45 p-3 hover:text-primary hover:bg-indigo-200 cursor-pointer rounded-2xl ${isPeopleBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-300 to-indigo-300' : ''}`}><Users className='self-center' />People</li>
+                            </HoverCardTrigger>
+                            <HoverCardContent side="right"
+                                align="start"
+                                className="z-50 w-40">
+                                <Link href={'/educator/people/users'}>
+                                    <p className=''>Users</p>
+                                </Link>
+                                <Separator className='my-2 bg-gray-200 h-px '></Separator>
+                                <Link href={'/educator/people/team-members'} className='hover:bg-indigo-200'>
+                                    <p>Team Members</p>
+                                </Link>
+                                <div className="absolute bg-white border-s border-b top-2 -left-2 h-4 w-4 rotate-45" />
+                            </HoverCardContent>
+                        </HoverCard>
+
+                        {/* <Link href={'/educator/content'}> <li className={`flex gap-2 hover:text-primary ${pathname === '/educator/content' ? 'text-primary font-bold' : ''}`}> <Pen className='self-center' /> Content</li></Link> */}
+
+
+                        {/* <Link href={'educator/app'}><li className={`flex gap-2 hover:text-primary ${pathname === '/apps' ? 'text-primary font-bold' : ''}`}><TabletSmartphone className='self-center' />Your App</li></Link> */}
+
+
+                        {/* <Link href={'/educator/landing-page'}>
+                            <li className={`flex gap-2 hover:text-primary ${pathname === '/educator/landing-page' ? 'text-primary font-bold' : ''}`}><Landmark className='self-center' />Landing Page</li>
+                        </Link> */}
+
+                        {/* <li className='flex gap-2 hover:text-primary'><User className='self-center' />1:1 sessions</li> */}
+
+
+
+                        {/* 
+                        <li className='flex gap-2 hover:text-primary'><MessageCircleMore 
+                        className='self-center' />Chat</li> */}
+
+
+                        {/* <Link href={'/educator/free-material'}>
+                            <li className={`flex gap-2 hover:text-primary ${pathname === '/educator/free-material' ? 'text-primary font-bold' : ''}`}><FileArchive className='self-center' />Free material</li>
+                        </Link> */}
+
+
+                        {/* <li className='flex gap-2 hover:text-primary'><LucideChartColumn className='self-center' />Analytics</li> */}
+
+
+
+                        {/* <Link href={'/educator/integration'}>
+                            <li className={`flex gap-2 hover:text-primary ${pathname === '/educator/integration' ? 'text-primary font-bold' : ''}`}><LucideWebhook className='self-center' />Integration</li>
+                        </Link> */}
+
+
+                        {/* <Link href={'/educator/campaigns'}>
+                            <li className={`flex gap-2 hover:text-primary ${pathname === '/educator/campaigns' ? 'text-primary font-bold' : ''}`}><SpeechIcon className='self-center' />Campaigns</li>
+                        </Link> */}
+
                     </div>
 
 
@@ -41,10 +144,10 @@ export const EducatorSideBar = () => {
                         <h3 className="text-xl font-bold  hover:text-primary">Settings</h3>
                         <li className='flex gap-2 text-gray-700 hover:text-primary'><UserCircle2Icon className='self-center' /> Profile</li>
 
-                        <li className="text-red-600 flex  gap-2"><ArrowRightFromLine  className='self-center' /> Log out</li>
+                        <li className="text-red-600 flex  gap-2"><ArrowRightFromLine className='self-center' /> Log out</li>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }

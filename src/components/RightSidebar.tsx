@@ -63,7 +63,7 @@ export default function RightSidebar() {
 
       {/* SIDEBAR */}
       <aside
-        className={`fixed right-0 top-0 h-full w-[320px] bg-white border-l border-gray-200 shadow-xl p-4 transition-transform duration-300 z-40 ${
+        className={` hidden fixed right-0 top-0 h-full w-[320px]  bg-white border-l border-gray-200 shadow-xl p-4 transition-transform duration-300 z-40 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

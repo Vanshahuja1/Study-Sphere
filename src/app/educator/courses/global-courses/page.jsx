@@ -4,8 +4,17 @@ import { Search, Filter, Star, X, BookOpenText, ArrowBigLeft, ArrowBigLeftDash, 
 import { useState, useEffect } from "react";
 import { CourseCard2 } from "@/components/courseCard2";
 import { CourseCard } from "@/components/courseCard";
+import { Input } from "@/components/ui/input";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
 import Slider from "react-slick";
 export default function GlobalCourses() {
     const [input, setInput] = useState('')
@@ -84,42 +93,67 @@ export default function GlobalCourses() {
         prevArrow: <HPrevArrow />,
         nextArrow: <HNextArrow />
     };
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+            },
+        },
+    }
 
+    const itemVariants = {
+        hidden: { opacity: 0, y: 10 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3 },
+        },
+    }
 
     return (<>
-        <main className="py-5 w-full bg-gray-50">
+        <main className=" w-full bg-indigo-50">
             <Header heading='Global Courses' para='Import courses from global courses of my courses' ></Header>
-            <section className='py-5'>
+            <motion.section variants={itemVariants} initial="hidden" animate="visible" className='py-5'>
                 <div className="container max-w-5xl mx-auto">
                     <div className="flex items-center gap-3 ">
                         {/* search */}
-                        <div className="searchbar flex w-2/5 items-center  bg-white rounded-2xl border border-gray-400 ">
-                            <input type="text" placeholder='Search by name' className='bg-white rounded-2xl px-2 outline-none w-full py-2 h-full' value={input} onChange={(e) => setInput(e.target.value)} />
-                            <Search className='w-1/5 h-7 text-gray-600'></Search>
+                        <div className="searchbar flex w-2/5 items-center  bg-white rounded-2xl border border-gray-200 relative ">
+                            <Input type="text" placeholder='Search by name' className='bg-white rounded-2xl px-2 outline-none w-full py-2 h-full' value={input} onChange={(e) => setInput(e.target.value)} />
+                            <Search className=' absolute h-6 right-4 text-gray-600'></Search>
                         </div>
-                        <div className="bg-white border-gray-400 w-35 text-gray-700 p-2 border rounded-2xl">
+                        <div className="bg-white border-gray-300 w-35 text-gray-700 p-2 border rounded-2xl">
                             <button className='flex items-center justify-around w-full' onClick={() => setShowFilterPanel(true)}>
                                 Filter
-                                <Filter className='text-gray-700'></Filter>
+                                <Filter className='text-gray-700 h-5'></Filter>
+
                                 {/* filter Panel */}
                             </button>
                             {showFilterPanel &&
-                                <div className="fixed right-0 top-0 bg-white w-1/3 z-100 rounded-s-2xl h-screen overflow-x-auto">
-                                    <div className=" sticky top-0  bg-white flex items-center justify-between px-5 pt-5">
+                                <aside className="shadow-2xl fixed right-0 top-0 bg-white w-1/3 z-100 rounded-s-2xl h-screen overflow-x-auto">
+                                    <div className="sticky top-0  bg-white flex items-center justify-between px-5 py-5 border-b">
                                         <h1 className='text-2xl font-bold text-gray-950'>Filter</h1>
                                         <X onClick={() => setShowFilterPanel(false)}></X>
                                     </div>
                                     <div className="flex flex-col my-4 gap-4 px-5 py-3">
 
-                                        <div className="bg-gray-100 px-3 py-3 rounded-xl">
+                                        <div className="bg-indigo-50 px-3 py-3 rounded-xl">
                                             <h3 className='text-gray-900 font-bold my-2'>Categories/ Sub-categories</h3>
-                                            <select className='bg-white w-full p-2 rounded-xl'>
-                                                <option value="">Political Science</option>
-                                                <option value="">Mathematics</option>
-                                            </select>
+                                            <Select >
+                                                <SelectTrigger className='bg-white  w-full p-2 rounded-xl'>
+                                                    <SelectValue placeholder="Categories"></SelectValue>
+                                                </SelectTrigger>
+                                                <SelectContent 
+                                                    sideOffset={4}
+                                                    className="w-(--radix-select-trigger-width) z-100">
+                                                    <SelectItem value="poltical">Political Science</SelectItem>
+                                                    <SelectItem value="maths">Mathematics</SelectItem>
+                                                </SelectContent>
+                                            </Select>
                                         </div>
 
-                                        <div className="bg-gray-100 p-3 rounded-xl">
+                                        <div className="bg-indigo-50 p-3 rounded-xl">
                                             <h3 className='text-gray-900 font-bold my-2'>Course Type</h3>
                                             <div className="flex gap-2 text-gray-700 my-1 ">
                                                 <input type="radio" name="radio" id='me' />
@@ -134,7 +168,7 @@ export default function GlobalCourses() {
                                                 <label htmlFor="radio">imported Course</label>
                                             </div>
                                         </div>
-                                        <div className="bg-gray-100 p-3 rounded-xl">
+                                        <div className="bg-indigo-50 p-3 rounded-xl">
                                             <h3 className='text-gray-900 font-bold my-2'>Course Status</h3>
                                             <div className="flex gap-2 my-1">
                                                 <input type="checkbox" name="public" id="" />
@@ -153,17 +187,17 @@ export default function GlobalCourses() {
                                                 <label htmlFor="public">Expired</label>
                                             </div>
                                         </div>
-                                        <div className="bg-gray-100 p-3 rounded-xl">
+                                        <div className="bg-indigo-50 p-3 rounded-xl">
                                             <h3 className='text-gray-900 font-bold my-2'>Price Range</h3>
                                             <div className="flex gap-4">
-                                                <input
+                                                <Input
                                                     type="text"
                                                     value={lowerLimit}
                                                     onChange={(e) => {
                                                         const onlyNums = e.target.value.replace(/[^0-9]/g, "");
                                                         setLowerLimit(onlyNums);
                                                     }} className='bg-white rounded-xl outline-none p-1 w-1/2' placeholder=' ₹ Enter lower limit' />
-                                                <input
+                                                <Input
                                                     type="text"
                                                     value={upperLimit}
                                                     onChange={(e) => {
@@ -173,13 +207,13 @@ export default function GlobalCourses() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="sticky bottom-0 right-0 bg-white py-4 px-4 w-full">
+                                    <div className="sticky border-t bottom-0 right-0 bg-white py-4 px-4 w-full">
                                         <div className="flex justify-end gap-4">
                                             <button className='bg-white cursor-pointer text-primary rounded-xl border border-primary px-4 py-3'>Clear Filter</button>
                                             <button className='bg-primary text-white cursor-pointer rounded-xl px-4 py-3'>Apply Filter</button>
                                         </div>
                                     </div>
-                                </div>
+                                </aside>
                             }
                         </div>
                     </div>
@@ -213,7 +247,7 @@ export default function GlobalCourses() {
                         })}
                     </Slider>
                 </div>
-            </section>
+            </motion.section>
         </main>
     </>)
 }

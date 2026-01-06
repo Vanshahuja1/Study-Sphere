@@ -2,6 +2,7 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { templates } from "@/lib/templateLoader";
 import { Header } from "@/components/Header";
+import { motion } from "framer-motion";
 import WebsitePage from "@/components/websitePage";
 export default function managePages() {
     const searchParams = useSearchParams();
@@ -10,13 +11,30 @@ export default function managePages() {
     const template = templates[templateId]
     if (!template) return <div className="p-8">Template not found</div>;
     const pageKeys = Object.keys(template.pages || {});
-    
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+            },
+        },
+    }
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 10 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3 },
+        },
+    }
     return (
         <>
-        <main className="flex flex-col w-full bg-gray-50">
+        <main className="flex flex-col w-full bg-indigo-50">
             
             <Header heading='Manage Your Website Pages' para='You can add ,remove or edit content of all pages' ></Header>
-            <section className="w-full py-5">
+            <motion.section variants={itemVariants} initial="hidden" animate="visible" className="w-full py-5 bg-indigo-50">
                 <div className="container max-w-5xl mx-auto">
                     <h1>Pages in :{template.name}</h1>
 
@@ -30,7 +48,7 @@ export default function managePages() {
                         })}
                     </div>
                 </div>
-            </section>
+            </motion.section>
         </main>
         </>
     )

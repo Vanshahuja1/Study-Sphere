@@ -3,6 +3,7 @@ import WebsitePage from "@/components/websitePage"
 import { LucidePlus } from "lucide-react"
 import { templates } from '@/lib/templateLoader'
 import { useState } from "react"
+import {motion} from 'framer-motion'
 import TemplateRenderer from '@/components/templateRenderer'
 import { templatesMeta } from '@/lib/templateLoader'
 import { Header } from "@/components/Header"
@@ -12,14 +13,31 @@ export default function EducatorSiteBuilder({ searchParams }) {
     //     Template1,Template2
     // ]
     const router = useRouter()
+const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+            },
+        },
+    }
 
+    const itemVariants = {
+        hidden: { opacity: 0, y: 10 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3 },
+        },
+    }
     return <>
-        <main className="flex flex-col w-full bg-gray-50">
+        <main className="flex flex-col w-full bg-indigo-50">
 
             {/* <h1>Educator / Site Builder</h1>; */}
             <Header heading='Start Creating your Website' para='You can choose the template for all pages' ></Header>
             {/* website section */}
-            <section className="w-full py-5">
+            <motion.section variants={itemVariants} initial="hidden" animate="visible" className="w-full py-5">
                 <div className="container max-w-5xl mx-auto">
                     {/* <div className="flex gap-2">
                         {webPages.map((item, index) => {
@@ -45,7 +63,7 @@ export default function EducatorSiteBuilder({ searchParams }) {
                         ))}
                     </div>
                 </div>
-            </section>
+            </motion.section>
         </main>
 
     </>
