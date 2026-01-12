@@ -52,11 +52,11 @@ const containerVariants = {
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {templatesMeta.map(item => (
                             <div key={item.id} onClick={() => router.push(`/educator/site-builder/manage-pages?template=${item.id}`)}
-                                className="cursor-pointer bg-white rounded-lg shadow-lg hover:shadow-2xl overflow-hidden">
-                                <div className="h-40 bg-white flex items-center justify-center">
-                                    {item.preview ? <img src={item.preview} className="h-full w-full object-cover" alt={item.name} /> : <span>Preview</span>}
+                                className="cursor-pointer bg-white rounded-lg  shadow-lg transition-shadow hover:shadow-2xl overflow-hidden">
+                                <div className="h-45 border-gray-300 bg-white flex items-center justify-center">
+                                    {item.preview ? <img src={item.preview} className="h-full w-full object-cover " alt={item.name} /> : <span>Image illustration</span>}
                                 </div>
-                                <div className="p-4">
+                                <div className="p-3">
                                     <h2 className="font-semibold">{item.name}</h2>
                                 </div>
                             </div>

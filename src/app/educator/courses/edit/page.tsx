@@ -101,7 +101,7 @@ export default function EducatorEditCourse() {
     }
     return <main className=" w-full">
         <Header heading='Create Courses' para='Add/View content of your course' ></Header>
-        <motion.section variants={itemVariants} animate="visible" initial="hidden" className="py-5 bg-indigo-50">
+        <motion.section variants={itemVariants} animate="visible" initial="hidden" className="py-5 shadow-sm bg-indigo-50">
             <div className="container max-w-5xl mx-auto">
                 <div className="bg-white rounded-t-2xl border-b pt-4">
                     <Stepper defaultValue={2}
@@ -153,7 +153,7 @@ export default function EducatorEditCourse() {
                             <h2 className=" font-semibold text-slate-800 px-3 mt-4">Course duration type</h2>
 
                             <Select name="">
-                                <SelectTrigger className='bg-white m-2 w-120 border-gray-300 py-4 rounded-lg'>
+                                <SelectTrigger className='bg-white m-2 w-120 shadow-sm border-gray-300 py-4 rounded-lg'>
                                     <SelectValue placeholder="Select Category" className='py-2' />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -173,7 +173,7 @@ export default function EducatorEditCourse() {
                                         id="date"
                                         value={value}
                                         placeholder="June 01, 2025"
-                                        className="bg-background border-gray-300 w-120 py-4 mt-2"
+                                        className="bg-background border-gray-300 w-120 py-4 mt-2 shadow-sm"
                                         onChange={(e) => {
                                             const date = new Date(e.target.value)
                                             setValue(e.target.value)
@@ -226,20 +226,20 @@ export default function EducatorEditCourse() {
                         <div className="flex justify-between w-160 px-2 pb-4 mt-6">
                             <div className="">
                                 <Label className=" font-semibold text-slate-800 px-3">Price</Label>
-                                <Input type="text" placeholder="₹100" className=" border mt-2 border-gray-400 rounded-lg  px-3" />
+                                <Input type="text" placeholder="₹100" className=" border mt-2 shadow-sm  border-gray-400 rounded-lg  px-3" />
                             </div>
                             <div className="">
                                 <Label className=" font-semibold text-slate-800 px-3">Discount</Label>
-                                <Input type="text" placeholder="20%" className=" border mt-2 border-gray-400 rounded-lg  px-3" />
+                                <Input type="text" placeholder="20%" className=" border mt-2 shadow-sm  border-gray-400 rounded-lg  px-3" />
                             </div>
                             <div className="">
                                 <Label className=" font-semibold text-slate-800 px-3">Effective Price</Label>
-                                <Input type="text" disabled placeholder="₹80" className=" border mt-2 border-gray-400 rounded-lg  px-3" />
+                                <Input type="text" disabled placeholder="₹80" className="  shadow-sm border mt-2 border-gray-400 rounded-lg  px-3" />
                             </div>
                         </div>
                     </div>
                     <div className="w-1/3">
-                        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-5 h-70 border mt-4 border-gray-100 rounded-2xl">
+                        <div className="bg-gradient-to-r shadow-sm from-indigo-50 to-purple-50 p-5 h-70 border mt-4 border-gray-100 rounded-2xl">
                             <h2 className="font-semibold text-center text-lg text-slate-900 my-4 ">What is Course Validity?</h2>
                             <p className="text-medium text-justify text-slate-900">Course Validity is the predefined time period during which your students can access their Courses, You can choose between single validity,multiple validity, lifetime validity or set course expiry date</p>
 

@@ -81,10 +81,10 @@ export default function EducatorAnalytics() {
                 <div className="flex gap-3">
                     <div className="w-3/4">
                         <Select defaultValue="7 days">
-                            <SelectTrigger className="bg-white">
+                            <SelectTrigger className="bg-white shadow-md">
                                 <SelectValue ></SelectValue>
                             </SelectTrigger>
-                            <SelectContent className="">
+                            <SelectContent className="shadow-md">
                                 <SelectItem value="today">Today</SelectItem>
                                 <SelectItem value="7 days">Last 7 days</SelectItem>
                                 <SelectItem value="15 days">Last 15 days</SelectItem>
@@ -96,14 +96,14 @@ export default function EducatorAnalytics() {
                         <Tabs defaultValue="Website Sessions" className="w-full my-4 ">
                             <TabsList className="h-35 w-full">
                                 {tabData.map((item, i) => {
-                                    return <TabsTrigger value={item.title} key={i} className="flex flex-col items-start p-3">
+                                    return <TabsTrigger value={item.title} key={i} className="shadow-md flex flex-col items-start p-3">
                                         <h2 className="font-semibold">{item.title}</h2>
                                         <p className="text-primary font-semibold text-lg">{item.numericalData}</p>
                                         <p className="text-xs text-slate-500 flex gap-1 items-center"> {item.icon} {item.bottomline}</p>
                                     </TabsTrigger>
                                 })}
                             </TabsList>
-                            <TabsContent value="Website Sessions" className="bg-white rounded-2xl py-5 shadow-xl ">
+                            <TabsContent value="Website Sessions" className="bg-white rounded-2xl py-5 shadow-md">
                                 <div className="h-100 w-full text-xs p-3">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <LineChart data={data}>
@@ -164,14 +164,13 @@ export default function EducatorAnalytics() {
                         </Tabs>
                     </div>
                     <div className=" w-1/4">
-                        <div className="flex justify-between rounded-lg bg-white p-3">
+                        <div className="shadow-sm flex justify-between rounded-lg bg-white p-3">
                             <h3 className="font-semibold">Lifetime Revenue</h3>
                             <p className="text-primary font-semibold">₹30,000</p>
                         </div>
-                        <div className="bg-white rounded-2xl p-3 my-2">
+                        <div className="shadow-sm bg-white rounded-2xl p-3 my-2">
                             <h3 className="text-sm font-semibold">Quick Actions</h3>
-
-                            <div className="relative flex bg-purple-50 px-3 py-4 rounded-2xl gap-5 items-center t w-full mt-3 ">
+                            <div className="relative shadow-sm hover:shadow-md transition-shadow flex bg-purple-50 px-3 py-4 rounded-2xl gap-5 items-center t w-full mt-3 ">
                                 <div className="bg-purple-200 rounded-4xl p-2">
                                     <LucideIndianRupee className="h-4 w-4 text-primary" />
                                 </div>
@@ -182,7 +181,7 @@ export default function EducatorAnalytics() {
                                     <ChevronRight className="h-5"></ChevronRight>
                                 </div>
                             </div>
-                            <div className="relative flex bg-purple-50 px-3 py-4 rounded-2xl gap-5 items-center t w-full my-2 ">
+                            <div className="relative shadow-sm hover:shadow-md transition-shadow flex bg-purple-50 px-3 py-4 rounded-2xl gap-5 items-center t w-full my-2 ">
                                 <div className="bg-purple-200 rounded-4xl p-2">
                                     <LucideFileAxis3D className="h-4 w-4 text-primary" />
                                 </div>

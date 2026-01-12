@@ -50,7 +50,7 @@ export default function EducatorCreateCourse() {
     <Header heading='Create Courses' para='Add/View content of your course' ></Header>
     <motion.section variants={itemVariants} initial="hidden" animate="visible" className="py-5 bg-indigo-50">
       <div className="container max-w-5xl mx-auto">
-        <div className="bg-white rounded-t-2xl pb-5 pt-8 border-b mt-5">
+        <div className="shadow-sm bg-white rounded-t-2xl pb-5 pt-8 border-b mt-5">
           <Stepper defaultValue={1} indicators={{
             completed: <Check className="size-3.5" />,
             active: <LoaderCircleIcon className="size-3.5 animate-spin" />,
@@ -84,18 +84,18 @@ export default function EducatorCreateCourse() {
           <div className="w-1/2">
             <div className="flex flex-col gap-2 my-4 h-20">
               <Label htmlFor="Name" className="font-semibold text-lg text-slate-800">Name</Label>
-              <Input type="text" placeholder="Enter Course Name" className="border px-4 py-5 border-gray-300 bg-white rounded-lg" />
+              <Input type="text" placeholder="Enter Course Name" className="border px-4 py-5 shadow-sm border-gray-300 bg-white rounded-lg" />
             </div>
             <div className="flex flex-col gap-2 my-4">
               <Label htmlFor="Description" className="font-semibold text-lg text-slate-800">Description</Label>
-              <Textarea placeholder="Enter Course description here" className="border border-gray-300 bg-white p-2 h-45  rounded-lg" />
+              <Textarea placeholder="Enter Course description here" className="border shadow-sm border-gray-300 bg-white p-2 h-45  rounded-lg" />
 
             </div>
           </div>
           <div className="w-1/4">
-            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-5 h-85 border mt-4 border-gray-100 rounded-2xl">
+            <div className="bg-gradient-to-r shadow-sm from-indigo-50 to-purple-50 p-5 h-80 border mt-4 border-gray-100 rounded-2xl">
               <h2 className="font-bold text-lg text-gray-700 my-3">Features</h2>
-              <ul className="flex gap-3 flex-col">
+              <ul className="flex gap-2 flex-col">
                 <li className="flex gap-2"> <Image src={greenTick} width={20} height={20} alt="green tick"></Image> Allow offline download</li>
                 <li className="flex gap-2"> <Image src={greenTick} width={20} height={20} alt="green tick"></Image> Create installments</li>
                 <li className="flex gap-2"> <Image src={greenTick} width={20} height={20} alt="green tick"></Image> Promote course with trial</li>
@@ -111,14 +111,14 @@ export default function EducatorCreateCourse() {
 
           <div className="flex flex-col gap-2 my-4 border-b pb-5 px-6 ">
             <Label htmlFor="Description" className="font-semibold text-lg text-slate-800">Add Thumbnail</Label>
-            <Input type="file" name="" id="" className="w-50 bg-white border" />
+            <Input type="file" name="" id="" className="w-50 bg-white border shadow-sm" />
 
           </div>
           <div className="flex gap-45 pb-4 px-6">
             <div className="flex flex-col gap-2 my-4">
               <Label htmlFor="Description" className="font-semibold text-lg text-slate-800">Category</Label>
               <Select>
-                <SelectTrigger className='bg-white border-gray-300 py-5 rounded-lg'>
+                <SelectTrigger className='bg-white border-gray-300 shadow-sm py-5 rounded-lg'>
                   <SelectValue placeholder="Select Category" className='py-2' />
                 </SelectTrigger>
                 <SelectContent>
@@ -132,7 +132,7 @@ export default function EducatorCreateCourse() {
             <div className="flex flex-col gap-2 my-4">
               <Label htmlFor="Description" className="font-semibold text-lg text-slate-800">Sub Category</Label>
               <Select >
-                <SelectTrigger className='bg-white py-5 rounded-lg'>
+                <SelectTrigger className='bg-white py-5 rounded-lg shadow-sm'>
                   <SelectValue placeholder="Select Subcategory" className='py-2' />
                 </SelectTrigger>
                 <SelectContent>
@@ -150,7 +150,7 @@ export default function EducatorCreateCourse() {
         </div>
       </div>
     </motion.section>
-    <motion.footer variants={containerVariants} initial="hidden" animate="visible" className="bg-white shadow-2xl w-full px-5 py-4 sticky bottom-0 flex justify-between">
+    <motion.footer variants={containerVariants} initial="hidden" animate="visible" className=" bg-white shadow-2xl w-full px-5 py-4 sticky bottom-0 flex justify-between">
       <button className="border border-primary text-primary cursor-pointer rounded-2xl px-7 py-2">Previous</button>
       <Link href={'/educator/courses/edit'}>
         <button className="bg-primary text-white cursor-pointer rounded-2xl px-9 py-2 hover:font-bold ">Next</button>

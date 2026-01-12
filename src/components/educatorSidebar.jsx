@@ -32,39 +32,56 @@ export const EducatorSideBar = () => {
         }
     }
     const ListItem = ({ pathName, heading, icon }) => {
-        return <Link href={pathName}><li className={`flex gap-2 hover:text-primary hover:bg-indigo-200 rounded-2xl py-3 px-3  ${pathname === pathName ? 'text-primary font-semibold bg-gradient-to-r from-purple-300 to-indigo-300' : ''}`}>{icon}{heading}</li></Link>
+        return <Link href={pathName}><li className={`flex gap-2 hover:text-primary hover:bg-indigo-100 rounded-2xl py-3 px-3  ${pathname === pathName ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}>{icon}{heading}</li></Link>
     }
     const isCoursesBranch = pathname.startsWith("/educator/courses")
     const isPeopleBranch = pathname.startsWith("/educator/people")
+    const isWebsiteBranch = pathname.startsWith("/educator/site-builder")
     return (
         <>
             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="sticky left-0 z-10 top-0 shadow-2xl bg-white h-screen w-80 overflow-y-auto overflow-x-visible  ">
-                <div className="container w-full h-full py-3 px-5">
+                <div className="container w-full h-full py-3 px-5 scrollb">
                     {/* <h1 className="text-3xl text-primary font-bold my-5">StudySphere</h1> */}
                     <Image src={'/logo.png'} width={175} height={100} alt='logo'></Image>
                     {/* overview */}
 
-                    <div className="flex flex-col my-5 gap-1  text-gray-700 ">
+                    <div className="flex flex-col my-5 gap-1 text-gray-700 ">
                         <h3 className="text-xl font-bold text-primary mb-2 px-2">Overview</h3>
                         <ListItem pathName={'/educator'} heading='Dashboard' icon={<LayoutDashboard />}></ListItem>
-                        <ListItem pathName={'/educator/site-builder'} heading='Website' icon={<Globe />}></ListItem>
+                        <HoverCard>
+                        <HoverCardTrigger>
+                       <li className={`inline-flex gap-2 w-45 rounded-2xl p-3 hover:text-primary hover:bg-indigo-100 cursor-pointer ${isWebsiteBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}> <Globe/>Website</li>
+                        </HoverCardTrigger>
+                         <HoverCardContent side="right"
+                                align="start"
+                                className="z-50 w-50 p-2">
+                                <Link href={'/educator/site-builder'} className=''>
+                                    <p className={`hover:bg-indigo-100 p-2 rounded-lg ${pathname === '/educator/courses/global-courses' ? 'text-primary font-semibold bg-linear-to-r from-purple-200 to-indigo-200' : ''}`} >Website Creation</p>
+                                </Link>
+                                <Separator className='my-1 bg-gray-200 h-px '></Separator>
+                                <Link href={'/educator/site-builder/domain-integration'}>
+                                    <p className={`hover:bg-indigo-100 p-2 rounded-lg ${pathname === "/educator/courses" ? 'text-primary font-semibold bg-linear-to-r from-purple-200 to-indigo-200' : ''}`}>Domain Integration</p>
+                                </Link>
+                                <div className="absolute bg-white border-s border-b top-2 -left-2 h-4 w-4 rotate-45" />
+                            </HoverCardContent>
+                        </HoverCard>
                         {/* <Link href={'/educator/'}><li className={`flex gap-2 hover:text-primary ${pathname === '/educator' ? 'text-primary font-bold' : ''}`}><LayoutDashboard className='self-center' /> Dashboard</li></Link> */}
 
                         {/* <Link href={'/educator/site-builder'}> <li className={`flex gap-2 hover:text-primary ${pathname === '/educator/site-builder' ? 'text-primary font-bold' : ''}`}><Globe className='self-center' /> Website</li></Link> */}
 
                         <HoverCard>
                             <HoverCardTrigger asChild>
-                                <li className={`inline-flex gap-2 w-45 rounded-2xl p-3 hover:text-primary hover:bg-indigo-200 cursor-pointer ${isCoursesBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-300 to-indigo-300' : ''}`}> <Book className='self-center' />Courses</li>
+                                <li className={`inline-flex gap-2 w-45 rounded-2xl p-3 hover:text-primary hover:bg-indigo-100 cursor-pointer ${isCoursesBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}> <Book className='self-center' />Courses</li>
                             </HoverCardTrigger>
                             <HoverCardContent side="right"
                                 align="start"
-                                className="z-50 w-40">
-                                <Link href={'/educator/courses/global-courses'}>
-                                    <p className=''>Global Courses</p>
+                                className="z-50 w-50 p-2">
+                                <Link href={'/educator/courses/global-courses'} className=''>
+                                    <p className={`hover:bg-indigo-100 p-2 rounded-lg ${pathname === '/educator/courses/global-courses' ? 'text-primary font-semibold bg-linear-to-r from-purple-200 to-indigo-200' : ''}`} >Global Courses</p>
                                 </Link>
-                                <Separator className='my-2 bg-gray-200 h-px '></Separator>
+                                <Separator className='my-1 bg-gray-200 h-px '></Separator>
                                 <Link href={'/educator/courses'}>
-                                    <p>My Courses</p>
+                                    <p className={`hover:bg-indigo-100 p-2 rounded-lg ${pathname === "/educator/courses" ? 'text-primary font-semibold bg-linear-to-r from-purple-200 to-indigo-200' : ''}`}>My Courses</p>
                                 </Link>
                                 <div className="absolute bg-white border-s border-b top-2 -left-2 h-4 w-4 rotate-45" />
                             </HoverCardContent>
@@ -73,7 +90,7 @@ export const EducatorSideBar = () => {
                         <ListItem pathName={'/educator/content'} heading='Content' icon={<Pen />}></ListItem>
 
                         <ListItem pathName={'/educator/app'} heading='Your App' icon={<TabletSmartphone />}></ListItem>
-                        <ListItem pathName={'/educator/user'} heading='1:1 Sessions' icon={<User />}></ListItem>
+                        <ListItem pathName={'/educator/1on1'} heading='1:1 Sessions' icon={<User />}></ListItem>
                         <ListItem pathName={'/educator/landing-page'} heading='Landing Page' icon={<Landmark />}></ListItem>
                         <ListItem pathName={'/educator/chat'} heading='Chat' icon={<MessageCircleMore />}></ListItem>
                         <ListItem pathName={'/educator/free-material'} heading='Free Material' icon={<FileArchive />}></ListItem>
@@ -82,17 +99,17 @@ export const EducatorSideBar = () => {
                         <ListItem pathName={'/educator/campaigns'} heading='Campaigns' icon={<SpeechIcon />}></ListItem>
                         <HoverCard>
                             <HoverCardTrigger asChild>
-                                <li className={`inline-flex gap-2 w-45 p-3 hover:text-primary hover:bg-indigo-200 cursor-pointer rounded-2xl ${isPeopleBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-300 to-indigo-300' : ''}`}><Users className='self-center' />People</li>
+                                <li className={`inline-flex gap-2 w-45 p-3 hover:text-primary hover:bg-indigo-100 cursor-pointer rounded-2xl ${isPeopleBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}><Users className='self-center' />People</li>
                             </HoverCardTrigger>
                             <HoverCardContent side="right"
                                 align="start"
-                                className="z-50 w-40">
+                                className="z-50 w-50 p-2">
                                 <Link href={'/educator/people/users'}>
-                                    <p className=''>Users</p>
+                                    <p className={`hover:bg-indigo-100 p-2 rounded-lg ${pathname === '/educator/people/users' ? 'text-primary font-semibold bg-linear-to-r from-purple-200 to-indigo-200' : ''}`}>Users</p>
                                 </Link>
                                 <Separator className='my-2 bg-gray-200 h-px '></Separator>
                                 <Link href={'/educator/people/team-members'} className='hover:bg-indigo-200'>
-                                    <p>Team Members</p>
+                                    <p className={`hover:bg-indigo-100 p-2 rounded-lg ${pathname === '/educator/people/team-members' ? 'text-primary font-semibold bg-linear-to-r from-purple-200 to-indigo-200' : ''}`}>Team Members</p>
                                 </Link>
                                 <div className="absolute bg-white border-s border-b top-2 -left-2 h-4 w-4 rotate-45" />
                             </HoverCardContent>

@@ -30,23 +30,23 @@ export default function CreateLandingPage() {
             <motion.section variants={itemVariants} initial="hidden" animate="visible" className="py-5 ">
                 <div className="container max-w-5xl mx-auto">
                     <div className="flex gap-5 my-5">
-                        <div className="border-gray-200 bg-white shadow hover:shadow-2xl w-1/3 gap-3 flex flex-col items-center rounded-2xl border p-5">
+                        <div className="border-gray-200 bg-white shadow-md hover:shadow-xl transition-shadow w-1/3 gap-3 flex flex-col items-center rounded-2xl border p-5">
                             <div className="">
-                                <Image src={docImg} height={100} width={100} alt="documents"></Image>
+                                <Image src={docImg} height={90} width={90} alt="documents"></Image>
                             </div>
                             <h3 className="text-xl text-gray-900 font-semibold">Documents</h3>
                             <p className="text-gray-700 text-sm">File type Includes .doc, .docx, .pdf, .png, .jpg, .csv etc</p>
                         </div>
-                        <div className="border-gray-200 bg-white shadow hover:shadow-2xl w-1/3 gap-3 flex flex-col items-center rounded-2xl border p-5">
+                        <div className="border-gray-200 bg-white shadow-md hover:shadow-xl transition-shadow w-1/3 gap-3 flex flex-col items-center rounded-2xl border p-5">
                             <div className="">
-                                <Image src={youtubeImg} height={100} width={100} alt="documents"></Image>
+                                <Image src={youtubeImg} height={90} width={90} alt="documents"></Image>
                             </div>
                             <h3 className="text-xl text-gray-900 font-semibold">Youtube</h3>
                             <p className="text-gray-700 text-sm">Supported link : Youtube URL</p>
                         </div>
-                        <div className="border-gray-200 bg-white shadow hover:shadow-2xl w-1/3 gap-3 flex flex-col items-center rounded-2xl border p-5">
+                        <div className="border-gray-200 bg-white shadow-md hover:shadow-xl transition-shadow w-1/3 gap-3 flex flex-col items-center rounded-2xl border p-5">
                             <div className="">
-                                <Image src={testImg} height={100} width={100} alt="documents"></Image>
+                                <Image src={testImg} height={90} width={90} alt="documents"></Image>
                             </div>
                             <h3 className="text-xl text-gray-900 font-semibold">Tests</h3>
                             <p className="text-gray-700 text-sm">Import free test from CMS portal</p>

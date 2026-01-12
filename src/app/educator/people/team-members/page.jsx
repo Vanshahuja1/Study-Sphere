@@ -26,6 +26,7 @@ const tags = Array.from({ length: 20 }).map(
 )
 import { useState } from "react"
 import Image from "next/image"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 export default function educatorTeamMembers() {
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -67,49 +68,60 @@ export default function educatorTeamMembers() {
             <div className="container max-w-5xl mx-auto">
                 <div className="flex items-center gap-3 ">
                     {/* search */}
-                    <div className="searchbar flex w-2/5 items-center  bg-white rounded-2xl border border-gray-300 ">
+                    <div className="searchbar shadow-sm flex relative w-2/5 items-center  bg-white rounded-2xl border border-gray-300 ">
                         <Input type="text" placeholder='Search by name' className='bg-white rounded-2xl px-2 outline-none w-full py-2 h-full' value={input} onChange={(e) => setInput(e.target.value)} />
                         <Search className=' absolute h-6 right-4 text-gray-600'></Search>
 
                     </div>
                     {/* filter */}
-                    <div className="bg-white border-gray-300 w-30 text-gray-700 py-1 px-1 border rounded-2xl">
+                    <div className="bg-white shadow-sm border-gray-300 w-30 text-gray-700 py-2 px-1 border rounded-2xl">
                         <button className='flex items-center  justify-center gap-2 w-full' onClick={() => setShowFilterPanel(true)}>
                             Filter
                             <Filter className='text-gray-600 h-5'></Filter>
                         </button>
                         {/* filter Panel */}
                         {showFilterPanel &&
-                            <div className="shadow-2xl fixed right-0 top-0 bg-white w-2/5 z-100 rounded-s-2xl h-screen overflow-x-auto">
+                            <div className="shadow-2xl fixed right-0 top-0 bg-white w-2/5 z-50 rounded-s-2xl h-screen overflow-x-auto">
                                 <div className=" sticky top-0  bg-white flex items-center justify-between px-5 py-5 border-b">
                                     <h1 className='text-2xl font-bold text-gray-950'>Filter</h1>
                                     <X onClick={() => setShowFilterPanel(false)}></X>
                                 </div>
-                                <div className="flex flex-col my-3 gap-4 px-5 py-4 h-120">
-                                    <div className="bg-gray-50 p-3 rounded-xl">
+                                <div className="flex shadow-sm flex-col my-3 gap-4 px-5 py-4 h-120">
+                                    <div className="bg-indigo-50 p-3 rounded-xl">
                                         <h3 className='text-gray-800 font-semibold my-2'>Course</h3>
-                                        <select name="" id="" className="bg-white w-full p-3 rounded-2xl
-                                                                border">
-                                            <option value="">Geography Climate of India</option>
-                                            <option value="">UPSC exams</option>
-                                            <option value="">SSC Prepartion</option>
-                                        </select>
+                                        <Select name="" id="">
+                                            <SelectTrigger className="bg-white w-full p-3 rounded-2xl
+                                                                border" >
+                                                <SelectValue className="" placeholder="Categories"></SelectValue>
+                                            </SelectTrigger>
+                                            <SelectContent className="z-51">
+                                                <SelectItem value="geopgraphy">Geography Climate of India</SelectItem>
+                                                <SelectItem value="upsc">UPSC exams</SelectItem>
+                                                <SelectItem value="ssc">SSC Prepartion</SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
-                                    <div className="bg-gray-50 p-4 rounded-2xl">
+                                    <div className="shadow-sm bg-indigo-50 p-4 rounded-2xl">
                                         <h3 className='text-gray-800 font-semibold my-2'>Permissions</h3>
-                                        <select name="" id="" className="bg-white w-full p-3 rounded-2xl
+                                        <Select name="" id="" >
+                                            <SelectTrigger className="bg-white w-full p-3 rounded-2xl
                                                                 border">
-                                            <option value="">All Permissions</option>
-                                            <option value="">Marketing Suite</option>
-                                            <option value="">Chats</option>
-                                            <option value="">Banners</option>
-                                            <option value="">Coupons</option>
-                                            <option value="">Tests</option>
-                                            <option value="">People</option>
-                                            <option value="">Free Study Material</option>
-                                            <option value="">Settings</option>
-                                            <option value="">Courses</option>
-                                        </select>
+                                                <SelectValue placeholder="Select Permissions" className="bg-white w-full p-3 rounded-2xl
+                                                                border" ></SelectValue>
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="all">All Permissions</SelectItem>
+                                                <SelectItem value="marketing">Marketing Suite</SelectItem>
+                                                <SelectItem value="chats">Chats</SelectItem>
+                                                <SelectItem value="banners">Banners</SelectItem>
+                                                <SelectItem value="coupons">Coupons</SelectItem>
+                                                <SelectItem value="test">Tests</SelectItem>
+                                                <SelectItem value="people">People</SelectItem>
+                                                <SelectItem value="free">Free Study Material</SelectItem>
+                                                <SelectItem value="settings">Settings</SelectItem>
+                                                <SelectItem value="courses">Courses</SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
                                 </div>
                                 <div className="sticky border-t bottom-0 right-0 bg-white py-4 px-4 w-full">
@@ -122,7 +134,7 @@ export default function educatorTeamMembers() {
                         }
                     </div>
                 </div>
-                <div className="w-full bg-white rounded-2xl my-4 px-4">
+                <div className="w-full shadow-sm bg-white rounded-2xl my-4 px-4">
                     <div className="flex py-5 border-b ">
                         <h2 className="font-semibold text-gray-700 px-3 flex-3">Member Name</h2>
                         <h2 className="font-semibold text-gray-700 px-3 flex-3 text-center">Permissions</h2>

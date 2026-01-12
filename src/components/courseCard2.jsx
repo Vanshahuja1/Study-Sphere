@@ -3,7 +3,7 @@ import courseImg from "../../public/Course-card.png"
 export const CourseCard2 = ({ name, price, createdBy, validity, imported }) => {
     return (
         <>
-            <div className="bg-white flex max-w-120 w-full my-2 rounded-2xl shadow-lg cursor-pointer  ease-in-out duration-300">
+            <div className="bg-white flex max-w-120 w-full my-2 rounded-2xl shadow-md hover:shadow-xl transition-shadow cursor-pointer  ease-in-out duration-300">
                 <Image src={courseImg} height={250} width={250} className="rounded-s-2xl" alt="Courses"></Image>
                 <div className="px-4 my-3 relative w-full bg-white">
                     <p className="font-semibold text-medium overflow-hidden mt-3 ">{name}</p>

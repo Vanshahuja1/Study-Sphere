@@ -14,6 +14,17 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { Input } from "@/components/ui/input"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox"
 export default function LandingPage() {
     const [showFilterPanel, setShowFilterPanel] = useState(false)
     const landingPages = [
@@ -48,6 +59,7 @@ export default function LandingPage() {
             transition: { duration: 0.3 },
         },
     }
+    const [input, setInput] = useState('')
     return <>
         <main className='w-full'>
             <Header heading='Landing page (12)' para='List of pages created by you' ></Header>
@@ -55,13 +67,12 @@ export default function LandingPage() {
                 <div className="container max-w-5xl mx-auto">
                     <div className="flex items-center gap-3 ">
                         {/* search */}
-                        <div className="searchbar flex w-2/5 items-center  bg-white rounded-2xl border border-gray-300 ">
-                            <input type="text" placeholder='Search by name' className='bg-white rounded-2xl px-2 outline-none w-full py-2 h-full' />
-                            <Search className='w-1/5 h-6 text-gray-400'></Search>
-
+                        <div className="searchbar relative shadow-sm flex w-2/5 items-center  bg-white rounded-2xl border border-gray-300 ">
+                            <Input type="text" placeholder='Search by name' className='bg-white rounded-2xl px-2 outline-none w-full py-2 h-full' value={input} onChange={(e) => setInput(e.target.value)} />
+                            <Search className=' absolute h-6 right-4 text-gray-600'></Search>
                         </div>
                         {/* filter */}
-                        <div className="bg-white border-gray-300 w-30 text-gray-700 p-2 border rounded-2xl">
+                        <div className="bg-white shadow-sm border-gray-300 w-30 text-gray-700 p-2 border rounded-2xl">
                             <button className='flex items-center justify-around w-full' onClick={() => setShowFilterPanel(true)}>
                                 Filter
                                 <Filter className='text-gray-400'></Filter>
@@ -69,13 +80,13 @@ export default function LandingPage() {
                             {/* filter Panel */}
                             {showFilterPanel &&
                                 <div className="fixed right-0 top-0 bg-white w-1/3 z-100 rounded-s-2xl h-screen overflow-x-auto">
-                                    <div className=" sticky top-0  bg-white flex items-center justify-between px-5 pt-5">
-                                        <h1 className='text-2xl font-bold text-gray-950'>Filter</h1>
+                                    <div className="sticky top-0  bg-white flex items-center justify-between px-5 py-5 border-b">
+                                        <h1 className='text-2xl font-semibold text-gray-950'>Filter</h1>
                                         <X onClick={() => setShowFilterPanel(false)}></X>
                                     </div>
                                     <div className="flex flex-col my-4 gap-4 px-5 py-3">
-                                        <div className="bg-gray-50 p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-bold my-2'>Page Type</h3>
+                                        <div className="bg-indigo-50 shadow-sm p-3 rounded-xl">
+                                            <h3 className='text-gray-900 font-semibold my-2'>Page Type</h3>
                                             <div className="flex gap-2 text-gray-700 my-1 ">
                                                 <input type="radio" name="radio" id='me' />
                                                 <label htmlFor="radio">All</label>
@@ -93,8 +104,8 @@ export default function LandingPage() {
                                                 <label htmlFor="radio">Form Page</label>
                                             </div>
                                         </div>
-                                        <div className="bg-gray-50 p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-bold my-2'>Page Status</h3>
+                                        <div className="bg-indigo-50 shadow-sm p-3 rounded-xl">
+                                            <h3 className='text-gray-900 font-semibold my-2'>Page Status</h3>
                                             <div className="flex gap-2 my-1">
                                                 <input type="checkbox" name="public" id="" />
                                                 <label htmlFor="public">All</label>
@@ -112,8 +123,8 @@ export default function LandingPage() {
                                                 <label htmlFor="public">Draft</label>
                                             </div>
                                         </div>
-                                        <div className="bg-gray-50 p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-bold my-2'>Created By</h3>
+                                        <div className="bg-indigo-50 shadow-sm p-3 rounded-xl">
+                                            <h3 className='text-gray-900 font-semibold my-2'>Created By</h3>
                                             <div className="flex gap-2 text-gray-700 my-1 ">
                                                 <input type="radio" name="radio" id='me' />
                                                 <label htmlFor="radio">Me</label>
@@ -124,7 +135,7 @@ export default function LandingPage() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="sticky bottom-0 right-0 bg-white py-4 px-4 w-full">
+                                    <div className="sticky border-t bottom-0 right-0 bg-white py-4 px-4 w-full">
                                         <div className="flex justify-end gap-4">
                                             <button className='bg-white cursor-pointer text-primary rounded-xl border border-primary px-4 py-3'>Clear Filter</button>
                                             <button className='bg-primary text-white cursor-pointer rounded-xl px-4 py-3'>Apply Filter</button>
@@ -133,14 +144,14 @@ export default function LandingPage() {
                                 </div>
                             }
                         </div>
-                        <div className="text-white bg-primary p-2 rounded-2xl w-1/7 border-primary border ">
+                        <div className="text-white bg-primary shadow-sm p-2 rounded-2xl w-1/7 border-primary border ">
                             <Link href={'/educator/landing-page/create'}>
                                 <button className='flex items-center font-semibold justify-around w-full '>Create New Page</button>
                             </Link>
                         </div>
                     </div>
                     {/* table */}
-                    <div className="my-4 bg-white p-4 rounded-2xl">
+                    <div className="my-4 bg-white p-4 rounded-2xl shadow-sm">
                         <Table >
                             <TableHeader className="">
                                 <TableRow className="">

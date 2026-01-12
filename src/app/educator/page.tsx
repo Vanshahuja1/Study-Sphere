@@ -25,7 +25,7 @@ export default function EducatorDashboard() {
   }
   const [showClassPanel, setShowClassPanel] = useState(false)
   return <main className='w-full'>
-    <Header heading='Hi, Sahil khan' para='Welcome to your Dashboard' ></Header>
+    <Header heading='Welcome back, Sahil ' para='Welcome to your Dashboard' ></Header>
     <motion.section variants={containerVariants} initial="hidden" animate="visible" className="py-5 bg-indigo-50">
       <div className="container max-w-5xl mx-auto">
 
@@ -34,7 +34,7 @@ export default function EducatorDashboard() {
           <motion.div variants={itemVariants} initial="hidden" animate="visible" className="w-3/4 ">
             <div className="flex gap-4">
 
-              <div className="relative flex bg-white px-3 py-4 rounded-2xl gap-5 items-center t w-1/2 ">
+              <div className="relative flex shadow-sm hover:shadow-md transition-shadow bg-white px-3 py-4 rounded-2xl gap-5 items-center t w-1/2 ">
                 <div className="bg-purple-200 rounded-4xl p-4">
                   <LucideGlobe className="h-6 w-6 text-primary" />
                 </div>
@@ -50,7 +50,7 @@ export default function EducatorDashboard() {
                 </div>
               </div>
 
-              <div className="relative flex bg-white px-3 py-4 rounded-2xl gap-5 items-center  w-1/2 ">
+              <div className="relative flex shadow-sm hover:shadow-md transition-shadow  bg-white px-3 py-4 rounded-2xl gap-5 items-center  w-1/2 ">
                 <div className="bg-purple-200 rounded-4xl p-4">
                   <TabletSmartphone className="h-6 w-6 text-primary" />
                 </div>
@@ -68,11 +68,11 @@ export default function EducatorDashboard() {
 
             </div>
 
-            <div className="bg-white my-4 p-4 rounded-2xl">
+            <div className="bg-white my-4 p-4 rounded-2xl shadow-sm">
               <h2 className="text-slate-900 font-semibold text-lg">Our Offerings</h2>
               <div className="grid grid-cols-2 py-5 gap-4 ">
 
-                <div className="relative h-45 bg-white px-5 py-4 rounded-2xl border-gray-200 border w-full ">
+                <div className="relative h-43 hover:shadow-md shadow-sm transition-shadow bg-white px-5 py-4 rounded-2xl border-gray-200 border w-full ">
 
                   <div className="flex items-center gap-5">
                     <div className="bg-purple-200 rounded-4xl p-3">
@@ -87,14 +87,14 @@ export default function EducatorDashboard() {
                   </div>
                   <p className="mt-4 px-3 text-gray-700 h-10 text-sm">Easily course and sell courses online</p>
                   <Link href={'/educator/courses'}>
-                    <motion.div whileHover={{}} className="w-full">
-                      <p className="text-primary absolute bottom-3 px-3 font-semibold inline-flex items-end gap-1 cursor-pointer">Create Course
-                        <ArrowRight className="h-5" /></p>
+                    <motion.div  className="w-full">
+                      <motion.p whileHover={{x:5}}   transition={{ type: "spring", stiffness: 300 }} className="text-primary absolute bottom-3 px-3 font-semibold inline-flex items-end gap-1 cursor-pointer">Create Course
+                        <ArrowRight className="h-5" /></motion.p>
                     </motion.div>
                   </Link>
                 </div>
 
-                <div className="relative  bg-white px-5 py-4 rounded-2xl border-gray-200 border w-full ">
+                <div className="relative h-43 hover:shadow-md shadow-sm transition-shadow bg-white px-5 py-4 rounded-2xl border-gray-200 border w-full ">
 
                   <div className="flex items-center gap-5">
                     <div className="bg-purple-200 rounded-4xl p-3">
@@ -108,10 +108,10 @@ export default function EducatorDashboard() {
                     </div>
                   </div>
                   <p className="mt-4 px-3 h-10 text-slate-700 text-sm">Boost your conversions with stand alone landing pages</p>
-                  <p className="text-primary  px-3 absolute bottom-3 font-semibold flex items-end gap-1">Create Landing page<ArrowRight className="h-5" /></p>
+                  <motion.p whileHover={{x:5}}   transition={{ type: "spring", stiffness: 300 }} className="text-primary  cursor-pointer px-3 absolute bottom-3 font-semibold flex items-end gap-1">Create Landing page<ArrowRight className="h-5" /></motion.p>
                 </div>
 
-                <div className="relative h-45  bg-white px-3 py-4 rounded-2xl border-gray-200 border w-full ">
+                <div className="relative h-43 hover:shadow-md shadow-sm transition-shadow  bg-white px-3 py-4 rounded-2xl border-gray-200 border w-full ">
 
                   <div className="flex items-center gap-5">
                     <div className="bg-purple-200 rounded-4xl p-3">
@@ -125,11 +125,11 @@ export default function EducatorDashboard() {
                     </div>
                   </div>
                   <p className="mt-4 px-3 h-10 text-gray-700 text-sm">Create targeted marketing campaigns & boost engagement</p>
-                  <p className="text-primary  px-3 font-semibold absolute bottom-3 flex items-end gap-1">Explore Campaign<ArrowRight className="h-5" /></p>
+                  <motion.p whileHover={{x:5}}   transition={{ type: "spring", stiffness: 300 }} className="text-primary cursor-pointer px-3 font-semibold absolute bottom-3 flex items-end gap-1">Explore Campaign<ArrowRight className="h-5" /></motion.p>
                 </div>
 
 
-                <div className="relative h-45 bg-white px-3 py-4 rounded-2xl border-gray-200 border w-full ">
+                <div className="relative h-43 hover:shadow-md shadow-sm transition-shadow bg-white px-3 py-4 rounded-2xl border-gray-200 border w-full ">
 
                   <div className="flex items-center gap-5">
                     <div className="bg-purple-200 rounded-4xl p-3">
@@ -143,20 +143,20 @@ export default function EducatorDashboard() {
                     </div>
                   </div>
                   <p className="mt-4 px-3 h-10 text-gray-700 text-sm">Create online Tests and assign it it your courses</p>
-                  <p className="text-primary absolute bottom-3 px-3 font-semibold flex items-end gap-1">Create Tests<ArrowRight className="h-5" /></p>
+                  <motion.p whileHover={{x:5}}   transition={{ type: "spring", stiffness: 300 }} className="text-primary cursor-pointer absolute bottom-3 px-3 font-semibold flex items-end gap-1">Create Tests<ArrowRight className="h-5" /></motion.p>
                 </div>
 
               </div>
             </div>
 
-            <div className="bg-white my-4 p-4 rounded-2xl">
+            <div className="bg-white my-4 p-4 rounded-2xl shadow-sm">
 
               <div className="flex justify-between items-start">
                 <div className="">
                   <h2 className="text-slate-900 font-semibold  text-lg">Analytics</h2>
                   <p className="my-1  text-gray-700 text-xs">Last 7 days</p>
                 </div>
-                <p className="text-primary  px-3 font-semibold  flex items-end gap-1">View Details<ArrowRight className="h-5" /></p>
+                <motion.p whileHover={{x:5}}   transition={{ type: "spring", stiffness: 300 }} className="text-primary cursor-pointer px-3 font-semibold  flex items-end gap-1">View Details<ArrowRight className="h-5" /></motion.p>
               </div>
               <div className="grid grid-cols-2 py-4 gap-3">
                 <div className="flex w-full justify-between">
@@ -183,9 +183,9 @@ export default function EducatorDashboard() {
             </div>
           </motion.div>
           {/* options */}
-          <motion.div variants={itemVariants} initial="hidden" animate="visible" className="bg-white w-1/4 p-4 rounded-2xl">
-            <h2 className="text-gray-700 font-semibold mb-5 border-gray-200 pb-3 border-b text-xl">Upcoming Classes</h2>
-            <button onClick={() => setShowClassPanel(true)} className="bg-primary w-full text-white justify-center py-2 rounded-lg flex items-center"><Plus className="h-5"></Plus>Create Class</button>
+          <motion.div variants={itemVariants} initial="hidden" animate="visible" className="shadow-sm bg-white w-1/4 p-4 rounded-2xl">
+            <h2 className="text-gray-700 font-semibold mb-5 border-gray-200 pb-4 border-b text-xl">Upcoming Classes</h2>
+            <button onClick={() => setShowClassPanel(true)} className="bg-primary w-full text-white justify-center py-2 rounded-lg flex hover:shadow-lg transition-shadow cursor-pointer items-center"><Plus className="h-5"></Plus>Create Class</button>
             {showClassPanel &&
               <div className="shadow-2xl fixed right-0 top-0 bg-white w-2/5 z-100 rounded-s-2xl h-screen overflow-x-auto">
                 <div className="sticky top-0  bg-white flex items-center justify-between px-5 py-5 border-b">
@@ -194,7 +194,7 @@ export default function EducatorDashboard() {
                 </div>
                 <div className="flex flex-col my-4 gap-4 px-5 py-3">
 
-                  <div className="bg-indigo-50 flex items-center gap-7 px-3 py-3 rounded-xl">
+                  <div className="bg-indigo-50 shadow-sm hover:shadow-md transition-shadow flex items-center gap-7 px-3 py-3 rounded-xl">
                     <div className="bg-indigo-200 flex items-center relative flex-col py-3 px-4 rounded-2xl">
                       <Video className="h-12 w-12 text-primary"></Video>
                       <p className="bg-red-500 rounded  text-white text-xs p-1 absolute bottom-0">Live Class</p>
@@ -202,22 +202,19 @@ export default function EducatorDashboard() {
                     <div className='my-2 flex flex-col gap-1'>
                       <h3 className="font-semibold text-lg">Live Class Online </h3>
                       <p className="text-slate-600 text-sm">Schedule Live Class online in your courses or batch</p>
-                      <p className=" text-sm text-primary font-semibold  flex items-end gap-1">View Details<ArrowRight className="h-5" /></p>
+                      <motion.p whileHover={{x:5}} transition={{ type: "spring", stiffness: 300 }} className=" text-sm text-primary font-semibold  flex items-end gap-1">Schedule Live Class<ArrowRight className="h-5" /></motion.p>
                     </div>
-
                   </div>
 
-             
-
-                  <div className="bg-indigo-50 flex items-center gap-7 px-3 py-3 rounded-xl">
+                  <div className="bg-indigo-50 shadow-sm hover:shadow-md transition-shadow flex items-center gap-7 px-3 py-3 rounded-xl">
                     <div className="bg-indigo-200 flex relative justify-center items-center flex-col py-3 px-4 rounded-2xl">
                       <Video className="h-12 w-12 text-primary"></Video>
                       <p className="bg-orange-500 rounded w-13 text-center text-white text-xs absolute bottom-0 p-1">Demo</p>
                     </div>
                     <div className='my-2 flex flex-col gap-1'>
-                      <h3 className="font-semibold text-lg">Demo Live Class Online </h3>
+                      <h3 className="font-semibold text-lg">Demo Class Online </h3>
                       <p className="text-slate-600 text-sm">Schedule Demo Class to promote this course to other students</p>
-                      <p className=" text-sm text-primary font-semibold  flex items-end gap-1">Schedule Demo Class<ArrowRight className="h-5" /></p>
+                      <motion.p whileHover={{x:5}} transition={{ type: "spring", stiffness: 300 }} className=" text-sm text-primary font-semibold  flex items-end gap-1 cursor-pointer">Schedule Demo Class<ArrowRight className="h-5" /></motion.p>
                     </div>
 
                   </div>
@@ -230,7 +227,7 @@ export default function EducatorDashboard() {
             }
             <h2 className="text-gray-700 font-semibold my-5  text-xl">Additional Offerings</h2>
 
-            <div className="flex bg-purple-50 my-3 px-3 py-3 rounded-2xl gap-3 items-center text-primary  ">
+            <div className="shadow-sm hover:shadow-md transition-shadow cursor-pointer flex bg-purple-50 my-3 px-3 py-3 rounded-2xl gap-3 items-center text-primary  ">
               <div className="bg-purple-200 rounded-4xl p-2">
                 <ImageIcon className="h-5" />
               </div>
@@ -245,7 +242,7 @@ export default function EducatorDashboard() {
               </div>
             </div>
 
-            <div className="flex my-3 bg-purple-50 px-3 py-3 rounded-2xl gap-3 items-center text-primary  ">
+            <div className="flex my-3 shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-purple-50 px-3 py-3 rounded-2xl gap-3 items-center text-primary  ">
               <div className="bg-purple-200 rounded-4xl p-2">
                 <TicketCheck className="h-5" />
               </div>

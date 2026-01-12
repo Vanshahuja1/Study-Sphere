@@ -34,11 +34,11 @@ export default function managePages() {
         <main className="flex flex-col w-full bg-indigo-50">
             
             <Header heading='Manage Your Website Pages' para='You can add ,remove or edit content of all pages' ></Header>
-            <motion.section variants={itemVariants} initial="hidden" animate="visible" className="w-full py-5 bg-indigo-50">
+            <motion.section variants={itemVariants} initial="hidden" animate="visible" className="w-full bg-indigo-50 py-5">
                 <div className="container max-w-5xl mx-auto">
-                    <h1>Pages in :{template.name}</h1>
+                    <h1 className="font-semibold text-lg">Pages in : {template.name}</h1>
 
-                    <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 my-7">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 my-7">
                         {pageKeys.map((item) => {
                             return <WebsitePage key={item} item={item} templateId={templateId}/>
                             // <div className="border rounded-2xl justify-center items-center h-30 flex flex-col cursor-pointer " key={item} onClick={() => { router.push(`/educator/site-builder/preview?template=${templateId}&page=${item}`) }}>

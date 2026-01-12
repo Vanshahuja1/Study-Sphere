@@ -118,7 +118,7 @@ export default function EducatorContentCourse() {
                         </ScrollArea>
                     </div>
                     <div className="w-1/4 ">
-                        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-5  border mt-4 border-gray-100 rounded-2xl">
+                        <div className="bg-gradient-to-r shadow-sm from-indigo-50 to-purple-50 p-5  border mt-4 border-gray-100 rounded-2xl">
                             <h2 className="font-semibold text-xl px-3 text-slate-900 my-4 ">Add Content</h2>
                             <ul className="flex gap-4 py-3 flex-col px-3 cursor-pointer">
                                 <li className="flex gap-2"> <Image src={folderImg} className="" width={25} height={25} alt="green tick"></Image> Folder</li>

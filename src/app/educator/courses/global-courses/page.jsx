@@ -16,6 +16,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox"
+
 export default function GlobalCourses() {
     const [input, setInput] = useState('')
     const [showFilterPanel, setShowFilterPanel] = useState(false)
@@ -119,12 +123,12 @@ export default function GlobalCourses() {
                 <div className="container max-w-5xl mx-auto">
                     <div className="flex items-center gap-3 ">
                         {/* search */}
-                        <div className="searchbar flex w-2/5 items-center  bg-white rounded-2xl border border-gray-200 relative ">
+                        <div className="searchbar shadow-sm flex w-2/5 items-center  bg-white rounded-2xl border border-gray-200 relative ">
                             <Input type="text" placeholder='Search by name' className='bg-white rounded-2xl px-2 outline-none w-full py-2 h-full' value={input} onChange={(e) => setInput(e.target.value)} />
                             <Search className=' absolute h-6 right-4 text-gray-600'></Search>
                         </div>
-                        <div className="bg-white border-gray-300 w-35 text-gray-700 p-2 border rounded-2xl">
-                            <button className='flex items-center justify-around w-full' onClick={() => setShowFilterPanel(true)}>
+                        <div className="bg-white cursor-pointer shadow-sm border-gray-300 w-35 text-gray-700 p-2 border rounded-2xl">
+                            <button className='cursor-pointer flex items-center justify-around w-full' onClick={() => setShowFilterPanel(true)}>
                                 Filter
                                 <Filter className='text-gray-700 h-5'></Filter>
 
@@ -133,13 +137,13 @@ export default function GlobalCourses() {
                             {showFilterPanel &&
                                 <aside className="shadow-2xl fixed right-0 top-0 bg-white w-1/3 z-100 rounded-s-2xl h-screen overflow-x-auto">
                                     <div className="sticky top-0  bg-white flex items-center justify-between px-5 py-5 border-b">
-                                        <h1 className='text-2xl font-bold text-gray-950'>Filter</h1>
+                                        <h1 className='text-2xl font-semibold text-gray-950'>Filter</h1>
                                         <X onClick={() => setShowFilterPanel(false)}></X>
                                     </div>
                                     <div className="flex flex-col my-4 gap-4 px-5 py-3">
 
-                                        <div className="bg-indigo-50 px-3 py-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-bold my-2'>Categories/ Sub-categories</h3>
+                                        <div className="bg-indigo-50 shadow-sm px-3 py-3 rounded-xl">
+                                            <h3 className='text-gray-900 font-semibold my-2'>Categories/ Sub-categories</h3>
                                             <Select >
                                                 <SelectTrigger className='bg-white  w-full p-2 rounded-xl'>
                                                     <SelectValue placeholder="Categories"></SelectValue>
@@ -153,42 +157,45 @@ export default function GlobalCourses() {
                                             </Select>
                                         </div>
 
-                                        <div className="bg-indigo-50 p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-bold my-2'>Course Type</h3>
+                                        <div className="bg-indigo-50 p-3 shadow-sm rounded-xl">
+                                            <h3 className='text-gray-900 font-semibold my-2'>Course Type</h3>
+                                            <RadioGroup className="flex flex-col gap-1">
+
                                             <div className="flex gap-2 text-gray-700 my-1 ">
-                                                <input type="radio" name="radio" id='me' />
-                                                <label htmlFor="radio">Created by me</label>
+                                                <RadioGroupItem className="bg-white " value="me" id='me' />
+                                                <Label htmlFor="me">Created by me</Label>
                                             </div>
                                             <div className="flex gap-2 text-gray-700 my-1">
-                                                <input type="radio" name="radio" id='institute' />
-                                                <label htmlFor="radio">Created by Institute</label>
+                                                <RadioGroupItem className="bg-white" value="institute" id='institute' />
+                                                <Label htmlFor="institute">Created by Institute</Label>
                                             </div>
                                             <div className="flex gap-2 text-gray-700 my-1 ">
-                                                <input type="radio" name="radio" id='imported' />
-                                                <label htmlFor="radio">imported Course</label>
+                                                <RadioGroupItem className="bg-white text-black" value="imported" id='imported' />
+                                                <Label htmlFor="imported">imported Course</Label>
+                                            </div>
+                                            </RadioGroup>
+                                        </div>
+                                        <div className="bg-indigo-50 p-3 shadow-sm flex flex-col rounded-xl">
+                                            <h3 className='text-slate-900 font-semibold my-2'>Course Status</h3>
+                                            <div className="flex gap-2 my-1">
+                                                <Checkbox name="public" className="bg-white" id="" />
+                                                <Label htmlFor="public">Published (Public)</Label>
+                                            </div>
+                                            <div className="flex gap-2 my-1">
+                                                <Checkbox name="public" className="bg-white" id="" />
+                                                <Label htmlFor="public">Published (Private)</Label>
+                                            </div>
+                                            <div className="flex gap-2 my-1">
+                                                <Checkbox type="checkbox" className="bg-white" name="public" id="" />
+                                                <Label htmlFor="public">Unpublished</Label>
+                                            </div>
+                                            <div className="flex gap-2 my-1">
+                                                <Checkbox type="checkbox" className="bg-white" name="public" id="" />
+                                                <Label htmlFor="public">Expired</Label>
                                             </div>
                                         </div>
-                                        <div className="bg-indigo-50 p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-bold my-2'>Course Status</h3>
-                                            <div className="flex gap-2 my-1">
-                                                <input type="checkbox" name="public" id="" />
-                                                <label htmlFor="public">Published (Public)</label>
-                                            </div>
-                                            <div className="flex gap-2 my-1">
-                                                <input type="checkbox" name="public" id="" />
-                                                <label htmlFor="public">Published (Private)</label>
-                                            </div>
-                                            <div className="flex gap-2 my-1">
-                                                <input type="checkbox" name="public" id="" />
-                                                <label htmlFor="public">Unpublished</label>
-                                            </div>
-                                            <div className="flex gap-2 my-1">
-                                                <input type="checkbox" name="public" id="" />
-                                                <label htmlFor="public">Expired</label>
-                                            </div>
-                                        </div>
-                                        <div className="bg-indigo-50 p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-bold my-2'>Price Range</h3>
+                                        <div className="bg-indigo-50 p-3 shadow-sm rounded-xl">
+                                            <h3 className='text-gray-900 font-semibold my-2'>Price Range</h3>
                                             <div className="flex gap-4">
                                                 <Input
                                                     type="text"
@@ -219,7 +226,7 @@ export default function GlobalCourses() {
                     </div>
                     <div className="my-5 flex w-240 justify-between items-center">
                         <h2 className="text-2xl text-gray-700">Exam-oriented test series</h2>
-                        <button className="text-primary border hover:text-white hover:bg-primary cursor-pointer border-primary p-3 rounded-xl">View All</button>
+                        <button className="text-primary border  bg-white hover:text-white hover:bg-primary cursor-pointer border-primary p-3 rounded-xl">View All</button>
                     </div>
                     <Slider {...horizontalSettings}>
                         {globalCoursesData.map((course) => {
@@ -229,7 +236,7 @@ export default function GlobalCourses() {
 
                     <div className="my-5 flex w-240 justify-between items-center">
                         <h2 className="text-2xl text-gray-700">Top selling Courses</h2>
-                        <button className="text-primary border hover:text-white hover:bg-primary cursor-pointer border-primary p-3 rounded-xl">View All</button>
+                        <button className="text-primary border hover:text-white hover:bg-primary cursor-pointer border-primary p-3 bg-white rounded-xl">View All</button>
                     </div>
                     <Slider {...verticalSettings}>
                         {globalCoursesData.map((course) => {
@@ -239,7 +246,7 @@ export default function GlobalCourses() {
 
                     <div className="my-5 flex w-240 justify-between items-center">
                         <h2 className="text-2xl text-gray-700">Org relevant Courses</h2>
-                        <button className="text-primary border hover:text-white hover:bg-primary cursor-pointer border-primary p-3 rounded-xl">View All</button>
+                        <button className="text-primary border hover:text-white hover:bg-primary cursor-pointer border-primary p-3 bg-white rounded-xl">View All</button>
                     </div>
                     <Slider {...horizontalSettings}>
                         {globalCoursesData.map((course) => {
