@@ -5,16 +5,32 @@ import { GraduationCap, Mail, Phone, ArrowRight, Shield } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";
+import { adminSendOtp, adminVerifyOtp } from '@/services/auth';
+import { setAccessToken, setRefreshToken } from '@/utils/storage';
 
 export default function AdminLogin() {
   const [step, setStep] = useState('input'); // 'input' or 'otp'
   const [contactMethod, setContactMethod] = useState('email');
   const [contactValue, setContactValue] = useState('');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const handleContactSubmit = () => {
-    if (contactValue.trim()) {
+
+  const handleContactSubmit = async () => {
+    if (!contactValue.trim()) {
+      toast.error('Please enter your contact details');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      await adminSendOtp(contactValue, contactMethod as 'email' | 'mobile');
+      toast.success('OTP sent successfully!');
       setStep('otp');
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to send OTP');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,14 +53,26 @@ export default function AdminLogin() {
     }
   };
 
-  const handleOtpSubmit = () => {
+  const handleOtpSubmit = async () => {
     const otpCode = otp.join('');
     if (otpCode.length === 6) {
-      // Redirect to admin dashboard
-      router.push("/admin")
-      console.log('Redirecting to dashboard with OTP:', otpCode);
-      toast.success('Login successful! Redirecting to dashboard...');
-      // In real app: router.push('/admin/dashboard')
+      try {
+        setLoading(true);
+        const res = await adminVerifyOtp(contactValue, contactMethod as 'email' | 'mobile', otpCode);
+
+        if (res.access) {
+          setAccessToken(res.access);
+          setRefreshToken(res.refresh);
+          toast.success('Login successful! Redirecting to dashboard...');
+          router.push("/admin");
+        } else {
+          toast.error('Invalid response from server');
+        }
+      } catch (error: any) {
+        toast.error(error.message || 'Verification failed');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -77,22 +105,20 @@ export default function AdminLogin() {
               <div className="flex gap-2 mb-6 p-1 bg-gray-100 rounded-lg">
                 <button
                   onClick={() => setContactMethod('email')}
-                  className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-                    contactMethod === 'email'
-                      ? 'bg-white text-indigo-600 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
+                  className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${contactMethod === 'email'
+                    ? 'bg-white text-indigo-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                    }`}
                 >
                   <Mail className="w-4 h-4 inline mr-2" />
                   Email
                 </button>
                 <button
                   onClick={() => setContactMethod('mobile')}
-                  className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-                    contactMethod === 'mobile'
-                      ? 'bg-white text-indigo-600 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
+                  className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${contactMethod === 'mobile'
+                    ? 'bg-white text-indigo-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                    }`}
                 >
                   <Phone className="w-4 h-4 inline mr-2" />
                   Mobile
@@ -116,10 +142,11 @@ export default function AdminLogin() {
 
                 <button
                   onClick={handleContactSubmit}
-                  className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:scale-95 transition-all hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 group"
+                  disabled={loading}
+                  className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:scale-95 transition-all hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Send OTP
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {loading ? 'Sending...' : 'Send OTP'}
+                  {!loading && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 </button>
               </div>
 
@@ -174,15 +201,15 @@ export default function AdminLogin() {
 
                 <button
                   onClick={handleOtpSubmit}
-                  disabled={otp.join('').length !== 6}
+                  disabled={otp.join('').length !== 6 || loading}
                   className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
                 >
-                  Verify & Sign In
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {loading ? 'Verifying...' : 'Verify & Sign In'}
+                  {!loading && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 </button>
               </div>
 
-              <button 
+              <button
                 onClick={() => toast.info('OTP resent!')}
                 className="w-full mt-4 text-indigo-600 hover:text-indigo-700 font-medium text-sm"
               >
