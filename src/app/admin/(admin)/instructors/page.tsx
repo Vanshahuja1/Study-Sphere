@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Check, X, Search, Plus } from "lucide-react"
+import { AddInstructorModal } from "@/components/admin/instructors/AddInstructorModal"
 
 const instructors = [
   { id: 1, name: "Sarah Johnson", email: "sarah@example.com", courses: 5, rating: 4.8, status: "verified" },
@@ -30,10 +31,7 @@ export default function InstructorManagement() {
           <h1 className="text-3xl font-bold text-foreground">Instructor Management</h1>
           <p className="text-muted-foreground">Manage and verify instructors</p>
         </div>
-        <Button className="bg-primary text-primary-foreground gap-2">
-          <Plus className="w-4 h-4" />
-          Add Instructor
-        </Button>
+        <AddInstructorModal />
       </div>
 
       <Card>
@@ -76,11 +74,10 @@ export default function InstructorManagement() {
                     <td className="py-4">⭐ {instructor.rating}</td>
                     <td className="py-4">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          instructor.status === "verified"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-yellow-100 text-yellow-700"
-                        }`}
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${instructor.status === "verified"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-yellow-100 text-yellow-700"
+                          }`}
                       >
                         {instructor.status}
                       </span>

@@ -6,9 +6,15 @@ type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 async function request<T>(path: string, options: { method?: HttpMethod; body?: any; headers?: Record<string, string> } = {}): Promise<T> {
   const url = `${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
     ...(options.headers || {}),
   };
+
+  const isFormData = options.body instanceof FormData;
+
+  if (!isFormData && !headers["Content-Type"]) {
+    headers["Content-Type"] = "application/json";
+  }
+
   const token = getAuthToken();
   if (token) headers["Authorization"] = `Bearer ${token}`;
 
@@ -16,7 +22,7 @@ async function request<T>(path: string, options: { method?: HttpMethod; body?: a
     method: options.method || "GET",
     headers,
     credentials: "include",
-    body: options.body ? JSON.stringify(options.body) : undefined,
+    body: isFormData ? options.body : (options.body ? JSON.stringify(options.body) : undefined),
   });
 
   if (!res.ok) {
@@ -24,7 +30,7 @@ async function request<T>(path: string, options: { method?: HttpMethod; body?: a
     try {
       const errJson = await res.json();
       message = errJson?.message || message;
-    } catch {}
+    } catch { }
     throw new Error(message);
   }
 
