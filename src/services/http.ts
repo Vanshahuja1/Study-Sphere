@@ -5,6 +5,8 @@ type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 async function request<T>(path: string, options: { method?: HttpMethod; body?: any; headers?: Record<string, string> } = {}): Promise<T> {
   const url = `${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+console.log(API_BASE_URL)
+
   const headers: Record<string, string> = {
     ...(options.headers || {}),
   };

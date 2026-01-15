@@ -2,17 +2,6 @@
 import { useState } from 'react'
 import { Header } from "@/components/Header"
 import Link from 'next/link'
-import greenTick from '../../../../../public/greenTick-c3c873ac..svg'
-import Image from "next/image"
-import dragIcon from '@/../public/drag-icon.svg'
-import folderImg from '@/../public/folder-img.svg'
-import videoImg from '@/../public/video-circle_diy.svg'
-import onlineTestImg from '@/../public/online-test-active.png'
-import subjective from '@/../public/subjective-test-icon.svg'
-import document from '@/../public/document_diy.svg'
-import img from '@/../public/image_diy.svg'
-import zip from '@/../public/zip_diy.svg'
-import download from '@/../public/import_diy.svg'
 import { LucideArrowRight, PlusCircle, MoreVertical, Folder, Check, LoaderCircleIcon } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -33,6 +22,7 @@ import {
     StepperTitle,
     StepperTrigger,
 } from '@/components/ui/stepper';
+const steps = [{ title: 'Step 1' }, { title: 'Step 2' }, { title: 'Step 3' }];
 import { Input } from "@/components/ui/input"
 import { motion } from "framer-motion"
 import { Label } from "@/components/ui/label"
@@ -40,20 +30,15 @@ import {
     RadioGroup,
     RadioGroupItem,
 } from "@/components/ui/radio-group"
-const steps = [{ title: 'Step 1' }, { title: 'Step 2' }, { title: 'Step 3' }];
-import * as React from "react"
 import { CalendarIcon } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
-
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-
-
+import { useEducator } from '@/app/educatorContext/educatorContext'
 
 export default function EducatorEditCourse() {
     function formatDate(date: Date | undefined) {
@@ -98,6 +83,14 @@ export default function EducatorEditCourse() {
             y: 0,
             transition: { duration: 0.3 },
         }
+    }
+    const { createCourseData, setCreateCourseData } = useEducator();
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+        setCreateCourseData((prev) => ({
+            ...prev,
+            [name]: value,
+        }))
     }
     return <main className=" w-full">
         <Header heading='Create Courses' para='Add/View content of your course' ></Header>
@@ -152,7 +145,7 @@ export default function EducatorEditCourse() {
                         <div className="">
                             <h2 className=" font-semibold text-slate-800 px-3 mt-4">Course duration type</h2>
 
-                            <Select name="">
+                            <Select name="" onValueChange={(value) => setCreateCourseData((prev) => ({ ...prev, validity_type: value }))}>
                                 <SelectTrigger className='bg-white m-2 w-120 shadow-sm border-gray-300 py-4 rounded-lg'>
                                     <SelectValue placeholder="Select Category" className='py-2' />
                                 </SelectTrigger>
@@ -226,15 +219,15 @@ export default function EducatorEditCourse() {
                         <div className="flex justify-between w-160 px-2 pb-4 mt-6">
                             <div className="">
                                 <Label className=" font-semibold text-slate-800 px-3">Price</Label>
-                                <Input type="text" placeholder="₹100" className=" border mt-2 shadow-sm  border-gray-400 rounded-lg  px-3" />
+                                <Input type="text" onChange={handleChange} name='createCourseData.price' value={createCourseData.price}  placeholder="₹100" className=" border mt-2 shadow-sm  border-gray-400 rounded-lg  px-3" />
                             </div>
                             <div className="">
                                 <Label className=" font-semibold text-slate-800 px-3">Discount</Label>
-                                <Input type="text" placeholder="20%" className=" border mt-2 shadow-sm  border-gray-400 rounded-lg  px-3" />
+                                <Input type="text" onChange={handleChange} placeholder="20%" value={createCourseData.discount_percent} className=" border mt-2 shadow-sm  border-gray-400 rounded-lg  px-3" />
                             </div>
                             <div className="">
                                 <Label className=" font-semibold text-slate-800 px-3">Effective Price</Label>
-                                <Input type="text" disabled placeholder="₹80" className="  shadow-sm border mt-2 border-gray-400 rounded-lg  px-3" />
+                                <Input type="text"  name=''   disabled placeholder="₹80" className="  shadow-sm border mt-2 border-gray-400 rounded-lg  px-3" />
                             </div>
                         </div>
                     </div>

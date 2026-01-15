@@ -3,6 +3,7 @@ import Image from 'next/image'
 import courseCardImg from '../../../../public/Course-card.png'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { getEducatorCourses } from '@/services/educator/coursesAPIs'
 import { Header } from '@/components/Header'
 import { Search, Filter, Star, X, BookOpenText, ArrowBigLeft, ArrowBigLeftDash } from 'lucide-react'
 import { CourseCard } from '@/components/courseCard'
@@ -83,6 +84,18 @@ export default function EducatorCourses() {
     setSortValue(value)
     console.log(sortValue)
   }
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const data = await getEducatorCourses()
+      console.log(data)
+      setCourses(data)
+    }
+    fetchCourses()
+    const intervalId = setInterval(fetchCourses, 15000);
+
+    // cleanup
+    return () => clearInterval(intervalId);
+  }, [])
   return <>
     <main className='w-full bg-indigo-50'>
       <Header heading='Manage Your Courses' para='Add/View courses of your brand' ></Header>
@@ -95,22 +108,22 @@ export default function EducatorCourses() {
               <Search className=' absolute h-6 right-4 text-gray-600'></Search>
             </div>
             {/* sort */}
-            
-              <Select  onValueChange={handleSortValue}>
-                <SelectTrigger className='bg-white py-5 rounded-2xl shadow-sm cursor-pointer'>
-                  <SelectValue placeholder="Sort by" className='py-2' />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value='name'>Course Name</SelectItem>
-                  <SelectItem value='newest'>Newest</SelectItem>
-                  <SelectItem value='low'>Price Low to High</SelectItem>
-                  <SelectItem value='high'>Price High to Low</SelectItem>
-                  <SelectItem value='top'>Top Selling</SelectItem>
-                  <SelectItem value='popular'>Most Popular</SelectItem>
-                </SelectContent>
-              </Select>
-           
-          
+
+            <Select onValueChange={handleSortValue}>
+              <SelectTrigger className='bg-white py-5 rounded-2xl shadow-sm cursor-pointer'>
+                <SelectValue placeholder="Sort by" className='py-2' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='name'>Course Name</SelectItem>
+                <SelectItem value='newest'>Newest</SelectItem>
+                <SelectItem value='low'>Price Low to High</SelectItem>
+                <SelectItem value='high'>Price High to Low</SelectItem>
+                <SelectItem value='top'>Top Selling</SelectItem>
+                <SelectItem value='popular'>Most Popular</SelectItem>
+              </SelectContent>
+            </Select>
+
+
             {/* filter */}
             <div className="bg-white cursor-pointer shadow-sm  border-gray-200 w-30 text-slate-900 p-2 border rounded-2xl">
               <button className='flex items-center cursor-pointer justify-center gap-2 w-full' onClick={() => setShowFilterPanel(true)}>
@@ -118,93 +131,93 @@ export default function EducatorCourses() {
                 <Filter className='text-gray-700 h-5'></Filter>
               </button>
               {/* filter Panel */}
-             {showFilterPanel &&
-                                <aside className="shadow-2xl fixed right-0 top-0 bg-white w-1/3 z-100 rounded-s-2xl h-screen overflow-x-auto">
-                                    <div className="sticky top-0  bg-white flex items-center justify-between px-5 py-5 border-b">
-                                        <h1 className='text-2xl font-semibold text-gray-950'>Filter</h1>
-                                        <X onClick={() => setShowFilterPanel(false)}></X>
-                                    </div>
-                                    <div className="flex flex-col my-4 gap-4 px-5 py-3">
+              {showFilterPanel &&
+                <aside className="shadow-2xl fixed right-0 top-0 bg-white w-1/3 z-100 rounded-s-2xl h-screen overflow-x-auto">
+                  <div className="sticky top-0  bg-white flex items-center justify-between px-5 py-5 border-b">
+                    <h1 className='text-2xl font-semibold text-gray-950'>Filter</h1>
+                    <X onClick={() => setShowFilterPanel(false)}></X>
+                  </div>
+                  <div className="flex flex-col my-4 gap-4 px-5 py-3">
 
-                                        <div className="bg-indigo-50 shadow-sm px-3 py-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-semibold my-2'>Categories/ Sub-categories</h3>
-                                            <Select >
-                                                <SelectTrigger className='bg-white  w-full p-2 rounded-xl'>
-                                                    <SelectValue placeholder="Categories"></SelectValue>
-                                                </SelectTrigger>
-                                                <SelectContent 
-                                                    sideOffset={4}
-                                                    className="w-(--radix-select-trigger-width) z-100">
-                                                    <SelectItem value="poltical">Political Science</SelectItem>
-                                                    <SelectItem value="maths">Mathematics</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
+                    <div className="bg-indigo-50 shadow-sm px-3 py-3 rounded-xl">
+                      <h3 className='text-gray-900 font-semibold my-2'>Categories/ Sub-categories</h3>
+                      <Select >
+                        <SelectTrigger className='bg-white  w-full p-2 rounded-xl'>
+                          <SelectValue placeholder="Categories"></SelectValue>
+                        </SelectTrigger>
+                        <SelectContent
+                          sideOffset={4}
+                          className="w-(--radix-select-trigger-width) z-100">
+                          <SelectItem value="poltical">Political Science</SelectItem>
+                          <SelectItem value="maths">Mathematics</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                                        <div className="bg-indigo-50 shadow-sm p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-semibold my-2'>Course Type</h3>
-                                            <RadioGroup className="flex flex-col gap-1">
+                    <div className="bg-indigo-50 shadow-sm p-3 rounded-xl">
+                      <h3 className='text-gray-900 font-semibold my-2'>Course Type</h3>
+                      <RadioGroup className="flex flex-col gap-1">
 
-                                            <div className="flex gap-2 my-1 ">
-                                                <RadioGroupItem className="bg-white " value="me" id='me' />
-                                                <Label htmlFor="me">Created by me</Label>
-                                            </div>
-                                            <div className="flex gap-2  my-1">
-                                                <RadioGroupItem className="bg-white" value="institute" id='institute' />
-                                                <Label htmlFor="institute">Created by Institute</Label>
-                                            </div>
-                                            <div className="flex gap-2  my-1 ">
-                                                <RadioGroupItem className="bg-white text-black" value="imported" id='imported' />
-                                                <Label htmlFor="imported">imported Course</Label>
-                                            </div>
-                                            </RadioGroup>
-                                        </div>
-                                        <div className="bg-indigo-50 shadow-sm p-3 flex  gap-1 flex-col rounded-xl">
-                                            <h3 className='text-slate-900 font-semibold my-2'>Course Status</h3>
-                                            <div className="flex gap-2 my-1">
-                                                <Checkbox name="public" className="bg-white" id="" />
-                                                <Label htmlFor="public">Published (Public)</Label>
-                                            </div>
-                                            <div className="flex gap-2 my-1">
-                                                <Checkbox name="public" className="bg-white" id="" />
-                                                <Label htmlFor="public">Published (Private)</Label>
-                                            </div>
-                                            <div className="flex gap-2 my-1">
-                                                <Checkbox type="checkbox" className="bg-white" name="public" id="" />
-                                                <Label htmlFor="public">Unpublished</Label>
-                                            </div>
-                                            <div className="flex gap-2 my-1">
-                                                <Checkbox type="checkbox" className="bg-white" name="public" id="" />
-                                                <Label htmlFor="public">Expired</Label>
-                                            </div>
-                                        </div>
-                                        <div className="bg-indigo-50 shadow-sm p-3 rounded-xl">
-                                            <h3 className='text-gray-900 font-semibold my-2'>Price Range</h3>
-                                            <div className="flex gap-4">
-                                                <Input
-                                                    type="text"
-                                                    value={lowerLimit}
-                                                    onChange={(e) => {
-                                                        const onlyNums = e.target.value.replace(/[^0-9]/g, "");
-                                                        setLowerLimit(onlyNums);
-                                                    }} className='bg-white rounded-xl outline-none p-1 w-1/2' placeholder=' ₹ Enter lower limit' />
-                                                <Input
-                                                    type="text"
-                                                    value={upperLimit}
-                                                    onChange={(e) => {
-                                                        const onlyNums = e.target.value.replace(/[^0-9]/g, "");
-                                                        setUpperLimit(onlyNums);
-                                                    }} className='bg-white rounded-xl outline-none p-1 w-1/2' placeholder=' ₹ Enter upper limit' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="sticky border-t bottom-0 right-0 bg-white py-4 px-4 w-full">
-                                        <div className="flex justify-end gap-4">
-                                            <button className='bg-white cursor-pointer text-primary rounded-xl border border-primary px-4 py-3'>Clear Filter</button>
-                                            <button className='bg-primary text-white cursor-pointer rounded-xl px-4 py-3'>Apply Filter</button>
-                                        </div>
-                                    </div>
-                                </aside>
+                        <div className="flex gap-2 my-1 ">
+                          <RadioGroupItem className="bg-white " value="me" id='me' />
+                          <Label htmlFor="me">Created by me</Label>
+                        </div>
+                        <div className="flex gap-2  my-1">
+                          <RadioGroupItem className="bg-white" value="institute" id='institute' />
+                          <Label htmlFor="institute">Created by Institute</Label>
+                        </div>
+                        <div className="flex gap-2  my-1 ">
+                          <RadioGroupItem className="bg-white text-black" value="imported" id='imported' />
+                          <Label htmlFor="imported">imported Course</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+                    <div className="bg-indigo-50 shadow-sm p-3 flex  gap-1 flex-col rounded-xl">
+                      <h3 className='text-slate-900 font-semibold my-2'>Course Status</h3>
+                      <div className="flex gap-2 my-1">
+                        <Checkbox name="public" className="bg-white" id="" />
+                        <Label htmlFor="public">Published (Public)</Label>
+                      </div>
+                      <div className="flex gap-2 my-1">
+                        <Checkbox name="public" className="bg-white" id="" />
+                        <Label htmlFor="public">Published (Private)</Label>
+                      </div>
+                      <div className="flex gap-2 my-1">
+                        <Checkbox type="checkbox" className="bg-white" name="public" id="" />
+                        <Label htmlFor="public">Unpublished</Label>
+                      </div>
+                      <div className="flex gap-2 my-1">
+                        <Checkbox type="checkbox" className="bg-white" name="public" id="" />
+                        <Label htmlFor="public">Expired</Label>
+                      </div>
+                    </div>
+                    <div className="bg-indigo-50 shadow-sm p-3 rounded-xl">
+                      <h3 className='text-gray-900 font-semibold my-2'>Price Range</h3>
+                      <div className="flex gap-4">
+                        <Input
+                          type="text"
+                          value={lowerLimit}
+                          onChange={(e) => {
+                            const onlyNums = e.target.value.replace(/[^0-9]/g, "");
+                            setLowerLimit(onlyNums);
+                          }} className='bg-white rounded-xl outline-none p-1 w-1/2' placeholder=' ₹ Enter lower limit' />
+                        <Input
+                          type="text"
+                          value={upperLimit}
+                          onChange={(e) => {
+                            const onlyNums = e.target.value.replace(/[^0-9]/g, "");
+                            setUpperLimit(onlyNums);
+                          }} className='bg-white rounded-xl outline-none p-1 w-1/2' placeholder=' ₹ Enter upper limit' />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="sticky border-t bottom-0 right-0 bg-white py-4 px-4 w-full">
+                    <div className="flex justify-end gap-4">
+                      <button className='bg-white cursor-pointer text-primary rounded-xl border border-primary px-4 py-3'>Clear Filter</button>
+                      <button className='bg-primary text-white cursor-pointer rounded-xl px-4 py-3'>Apply Filter</button>
+                    </div>
+                  </div>
+                </aside>
               }
             </div>
             {/* featured */}
@@ -276,7 +289,7 @@ export default function EducatorCourses() {
           </div>
           <div className="grid grid-cols-4 gap-5 my-6">
             {courses.map((course) => {
-              return <CourseCard key={course.id} name={course.CourseName} validity={course.validity} price={course.price} createdBy={course.createdBy} />
+              return <CourseCard key={course.id} name={course.title} validity={course.validity_type} price={course.discounted_price} createdBy={course.created_By} />
             })}
 
           </div>

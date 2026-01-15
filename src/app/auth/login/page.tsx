@@ -7,7 +7,7 @@ import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const OTP_LENGTH = 5;
+const OTP_LENGTH = 6;
 
 const LoginPage = () => {
   const router = useRouter();

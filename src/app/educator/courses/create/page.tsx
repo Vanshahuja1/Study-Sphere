@@ -1,5 +1,6 @@
 "use client"
 import { Header } from "@/components/Header"
+import { useEducator } from "@/app/educatorContext/educatorContext"
 import greenTick from '../../../../../public/greenTick-c3c873ac..svg'
 import Link from "next/link"
 import Image from "next/image"
@@ -26,6 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useEffect, useState } from "react"
 const steps = [{ title: 'Step 1' }, { title: 'Step 2' }, { title: 'Step 3' }];
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -45,7 +47,61 @@ const itemVariants = {
     transition: { duration: 0.3 },
   }
 }
+
+
 export default function EducatorCreateCourse() {
+  useEffect(() => {
+    // const pingServer = async () => {
+    //   try {
+    //     const res = await fetch("https://classplusproject-u8mc.onrender.com/")
+
+    //     // Only try to parse JSON if the server actually returns JSON
+    //     let data;
+    //     const contentType = res.headers.get("content-type") || "";
+    //     if (contentType.includes("application/json")) {
+    //       data = await res.json();
+    //     } else {
+    //       data = await res.text(); // fallback for plain text or HTML
+    //     }
+
+    //     console.log("Root response:", data)
+    //   } catch (error) {
+    //     console.error("Failed to reach server:", error)
+    //   }
+    // }
+
+    // pingServer()
+
+//  const sendotp = async () => {
+//       try {
+//         const res = await fetch('https://classplusproject-u8mc.onrender.com/api/auth/send-otp/', {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           credentials: "include",
+//           body: JSON.stringify({
+//             identifier: "sahilskp110@gmail.com",
+//             identifier_type: "email"
+//           })
+//         })
+//         const data = await res.json()
+//         console.log(data)
+//       }
+//       catch (e) {
+//         console.log(e)
+//       }
+//     }
+//   sendotp
+    
+  }, [])
+const { createCourseData, setCreateCourseData } = useEducator();
+const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const {name,value} = e.target
+    setCreateCourseData((prev) => ({
+    ...prev,
+    [name]: value,
+  }))
+}
+console.log(createCourseData)
   return <main className=" w-full">
     <Header heading='Create Courses' para='Add/View content of your course' ></Header>
     <motion.section variants={itemVariants} initial="hidden" animate="visible" className="py-5 bg-indigo-50">
@@ -84,16 +140,16 @@ export default function EducatorCreateCourse() {
           <div className="w-1/2">
             <div className="flex flex-col gap-2 my-4 h-20">
               <Label htmlFor="Name" className="font-semibold text-lg text-slate-800">Name</Label>
-              <Input type="text" placeholder="Enter Course Name" className="border px-4 py-5 shadow-sm border-gray-300 bg-white rounded-lg" />
+              <Input type="text" name="title" value={createCourseData.title} onChange={handleChange} placeholder="Enter Course Name" className="border px-4 py-5 shadow-sm border-gray-300 bg-white rounded-lg" />
             </div>
             <div className="flex flex-col gap-2 my-4">
               <Label htmlFor="Description" className="font-semibold text-lg text-slate-800">Description</Label>
-              <Textarea placeholder="Enter Course description here" className="border shadow-sm border-gray-300 bg-white p-2 h-45  rounded-lg" />
+              <Textarea placeholder="Enter Course description here" value={createCourseData.description} onChange={handleChange} name="description" className="border shadow-sm border-gray-300 bg-white p-2 h-45  rounded-lg" />
 
             </div>
           </div>
           <div className="w-1/4">
-            <div className="bg-gradient-to-r shadow-sm from-indigo-50 to-purple-50 p-5 h-80 border mt-4 border-gray-100 rounded-2xl">
+            <div className="bg-linear-to-r shadow-sm from-indigo-50 to-purple-50 p-5 h-80 border mt-4 border-gray-100 rounded-2xl">
               <h2 className="font-bold text-lg text-gray-700 my-3">Features</h2>
               <ul className="flex gap-2 flex-col">
                 <li className="flex gap-2"> <Image src={greenTick} width={20} height={20} alt="green tick"></Image> Allow offline download</li>
@@ -117,29 +173,29 @@ export default function EducatorCreateCourse() {
           <div className="flex gap-45 pb-4 px-6">
             <div className="flex flex-col gap-2 my-4">
               <Label htmlFor="Description" className="font-semibold text-lg text-slate-800">Category</Label>
-              <Select>
+              <Select onValueChange={(value)=> setCreateCourseData((prev)=> ({...prev,category:value}))}>
                 <SelectTrigger className='bg-white border-gray-300 shadow-sm py-5 rounded-lg'>
                   <SelectValue placeholder="Select Category" className='py-2' />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="bank">Bank Exams</SelectItem>
-                  <SelectItem value="upsc">UPSC Exmas</SelectItem>
-                  <SelectItem value="ssc">SSC Exams</SelectItem>
+                  <SelectItem value="1">Bank Exams</SelectItem>
+                  <SelectItem value="2">UPSC Exmas</SelectItem>
+                  <SelectItem value="3">SSC Exams</SelectItem>
                 </SelectContent>
               </Select>
 
             </div>
             <div className="flex flex-col gap-2 my-4">
               <Label htmlFor="Description" className="font-semibold text-lg text-slate-800">Sub Category</Label>
-              <Select >
+              <Select onValueChange={(value)=> setCreateCourseData((prev)=> ({...prev,subCategory:value}))} >
                 <SelectTrigger className='bg-white py-5 rounded-lg shadow-sm'>
                   <SelectValue placeholder="Select Subcategory" className='py-2' />
                 </SelectTrigger>
                 <SelectContent>
 
-                  <SelectItem value="geography">Geography</SelectItem>
-                  <SelectItem value="history">History</SelectItem>
-                  <SelectItem value="political">Political science</SelectItem>
+                  <SelectItem value="1">Geography</SelectItem>
+                  <SelectItem value="2">History</SelectItem>
+                  <SelectItem value="3">Political science</SelectItem>
                 </SelectContent>
               </Select>
             </div>

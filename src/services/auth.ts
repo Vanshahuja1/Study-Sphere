@@ -3,7 +3,7 @@ import http from "./http";
 export type Role = "admin" | "student" | "educator";
 
 export async function requestOtp(identifier: string) {
-  const data = await http.post<{ success: boolean }>("/auth/request-otp", { identifier });
+  const data = await http.post<{ success: boolean }>("/auth/send-otp/", { identifier:"sahilskp110@gmail.com",identifier_type:"email"});
   return data;
 }
 
@@ -16,7 +16,7 @@ export interface AuthResponse {
 }
 
 export async function verifyOtp(identifier: string, otp: string) {
-  const data = await http.post<AuthResponse>("/auth/verify-otp", { identifier, otp });
+  const data = await http.post<AuthResponse>("/auth/verify-otp/", { identifier, otp });
   return data;
 }
 
@@ -36,3 +36,4 @@ export async function onboardInstructor(formData: FormData) {
     phone: string;
   }>("/auth/onboard-instructor/", formData);
 }
+

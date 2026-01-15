@@ -14,6 +14,8 @@ import zip from '@/../public/zip_diy.svg'
 import download from '@/../public/import_diy.svg'
 import { LucideArrowRight, PlusCircle, MoreVertical, Folder } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { createCourse, check } from "@/services/educator/coursesAPIs"
+import { ToastContainer,toast } from "react-toastify"
 import {
     Stepper,
     StepperContent,
@@ -35,8 +37,9 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import React from "react"
+import React, { useEffect } from "react"
 import { Input } from "@/components/ui/input"
+import { useEducator ,buildFormData} from "@/app/educatorContext/educatorContext"
 const tags = Array.from({ length: 20 }).map(
     (_, i, a) => `v1.2.0-beta.${a.length - i}`
 )
@@ -59,7 +62,27 @@ const itemVariants = {
         transition: { duration: 0.3 },
     }
 }
+
+
+
+
 export default function EducatorContentCourse() {
+
+    const { createCourseData, setCreateCourseData } = useEducator()
+    const courseCreation = async () => {
+        try {
+            const formData = buildFormData(createCourseData)
+            console.log(formData,'formdata')
+            const res = await createCourse(formData)
+            console.log(res,'res',)
+            toast.success(res.message)
+        }
+        catch (e) {
+            console.log(e)
+             toast.error(e?.response?.data?.message || "Something went wrong")
+        }
+
+    }
     return <main className=" w-full">
         <Header heading='Create Courses' para='Add/View content of your course' ></Header>
         <motion.section variants={itemVariants} initial="hidden" animate="visible" className="py-5 bg-indigo-50">
@@ -69,28 +92,28 @@ export default function EducatorContentCourse() {
                         completed: <Check className="size-3.5" />,
                         active: <LoaderCircleIcon className="size-3.5 animate-spin" />,
                     }} className="space-y-8 py-6 px-4">
-                          <StepperNav>
-                                    {steps.map((step, index) => (
-                                      <StepperItem key={index} step={index + 1} className="relative flex-1 items-start">
-                                        <StepperTrigger className="flex flex-col gap-2.5">
-                                          <StepperIndicator>{index + 1}</StepperIndicator>
-                                          <StepperTitle>{step.title}</StepperTitle>
-                                        </StepperTrigger>
-                      
-                                        {steps.length > index + 1 && (
-                                          <StepperSeparator className="absolute top-3 inset-x-0 left-[calc(50%+0.875rem)] m-0 group-data-[orientation=horizontal]/stepper-nav:w-[calc(100%-2rem+0.225rem)] group-data-[orientation=horizontal]/stepper-nav:flex-none group-data-[state=completed]/step:bg-primary" />
-                                        )}
-                                      </StepperItem>
-                                    ))}
-                                  </StepperNav>
-                      
-                                  <StepperPanel className="text-sm">
-                                    {steps.map((step, i) => (
-                                      <StepperContent className="w-full flex items-center  text-slate-800  font-semibold justify-center" key={i} value={i + 1}>
-                                        {step.title} - Add Content
-                                      </StepperContent>
-                                    ))}
-                                  </StepperPanel>
+                        <StepperNav>
+                            {steps.map((step, index) => (
+                                <StepperItem key={index} step={index + 1} className="relative flex-1 items-start">
+                                    <StepperTrigger className="flex flex-col gap-2.5">
+                                        <StepperIndicator>{index + 1}</StepperIndicator>
+                                        <StepperTitle>{step.title}</StepperTitle>
+                                    </StepperTrigger>
+
+                                    {steps.length > index + 1 && (
+                                        <StepperSeparator className="absolute top-3 inset-x-0 left-[calc(50%+0.875rem)] m-0 group-data-[orientation=horizontal]/stepper-nav:w-[calc(100%-2rem+0.225rem)] group-data-[orientation=horizontal]/stepper-nav:flex-none group-data-[state=completed]/step:bg-primary" />
+                                    )}
+                                </StepperItem>
+                            ))}
+                        </StepperNav>
+
+                        <StepperPanel className="text-sm">
+                            {steps.map((step, i) => (
+                                <StepperContent className="w-full flex items-center  text-slate-800  font-semibold justify-center" key={i} value={i + 1}>
+                                    {step.title} - Add Content
+                                </StepperContent>
+                            ))}
+                        </StepperPanel>
                     </Stepper>
                 </div>
                 <div className="flex bg-white p-4 gap-3 rounded-b-2xl">
@@ -132,10 +155,10 @@ export default function EducatorContentCourse() {
                                                 <DialogTitle>Upload Video(s)</DialogTitle>
                                                 <DialogDescription>
                                                     Select Multiple Videos from your local storage*Max upto 5GB per Video                                                </DialogDescription>
-                                                    <DialogDescription>
-                                                       <Input type='file' placeholder="upload video"></Input>
-                                                        
-                                                    </DialogDescription>
+                                                <DialogDescription>
+                                                    <Input type='file' placeholder="upload video"></Input>
+
+                                                </DialogDescription>
                                             </DialogHeader>
                                             <DialogFooter className="text-center bg-gradient-to-t my-3 from-indigo-200 to-purple-200 text-sm rounded-2xl p-3" >
                                                 View restrictions (decide the maximum number of views and for the maximum view duration) are available for studysphere powered vidoes.
@@ -157,8 +180,9 @@ export default function EducatorContentCourse() {
             </div>
         </motion.section>
         <motion.footer variants={containerVariants} initial="hidden" animate="visible" className="bg-white shadow-2xl w-full px-5 py-4 sticky bottom-0 flex justify-between">
-            <button className="border border-primary text-primary cursor-pointer rounded-2xl px-7 py-2">Previous</button>
-            <button className="bg-primary text-white cursor-pointer rounded-2xl px-9 py-2 hover:font-bold ">Next</button>
+            <button  className="border border-primary text-primary cursor-pointer rounded-2xl px-7 py-2">Previous</button>
+            <button onClick={() => courseCreation()} className="bg-primary text-white cursor-pointer rounded-2xl px-9 py-2 hover:font-bold ">Next</button>
         </motion.footer>
+        <ToastContainer></ToastContainer>
     </main>
 }
