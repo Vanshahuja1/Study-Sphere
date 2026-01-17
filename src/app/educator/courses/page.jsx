@@ -50,7 +50,7 @@ export default function EducatorCourses() {
     { id: 5, CourseName: "Indain Art & Culture", createdBy: "OneAim IT Solutions", validity: "Lifetime Validity", price: 1000 },
     { id: 6, CourseName: "Indain Art & Culture", createdBy: "OneAim IT Solutions", validity: "Lifetime Validity", price: 1000 }
   ]
-  const [courses, setCourses] = useState(myCoursesData || [])
+  const [courses, setCourses] = useState([])
   const [lowerLimit, setLowerLimit] = useState("");
   const [upperLimit, setUpperLimit] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false)
@@ -289,7 +289,7 @@ export default function EducatorCourses() {
           </div>
           <div className="grid grid-cols-4 gap-5 my-6">
             {courses.map((course) => {
-              return <CourseCard key={course.id} name={course.title} validity={course.validity_type} price={course.discounted_price} createdBy={course.created_By} />
+              return <CourseCard key={course.id} name={course.title} validity={course.validity_type} price={course.discounted_price} createdBy={course.created_by} thumbnail={course.thumbnail} />
             })}
 
           </div>

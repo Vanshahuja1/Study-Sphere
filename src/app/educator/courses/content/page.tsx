@@ -141,7 +141,7 @@ export default function EducatorContentCourse() {
                         </ScrollArea>
                     </div>
                     <div className="w-1/4 ">
-                        <div className="bg-gradient-to-r shadow-sm from-indigo-50 to-purple-50 p-5  border mt-4 border-gray-100 rounded-2xl">
+                        <div className="bg-linear-to-r shadow-sm from-indigo-50 to-purple-50 p-5  border mt-4 border-gray-100 rounded-2xl">
                             <h2 className="font-semibold text-xl px-3 text-slate-900 my-4 ">Add Content</h2>
                             <ul className="flex gap-4 py-3 flex-col px-3 cursor-pointer">
                                 <li className="flex gap-2"> <Image src={folderImg} className="" width={25} height={25} alt="green tick"></Image> Folder</li>
@@ -160,7 +160,7 @@ export default function EducatorContentCourse() {
 
                                                 </DialogDescription>
                                             </DialogHeader>
-                                            <DialogFooter className="text-center bg-gradient-to-t my-3 from-indigo-200 to-purple-200 text-sm rounded-2xl p-3" >
+                                            <DialogFooter className="text-center bg-linear-to-t my-3 from-indigo-200 to-purple-200 text-sm rounded-2xl p-3" >
                                                 View restrictions (decide the maximum number of views and for the maximum view duration) are available for studysphere powered vidoes.
                                             </DialogFooter>
                                         </DialogContent>

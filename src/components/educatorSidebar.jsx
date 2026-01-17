@@ -39,7 +39,7 @@ export const EducatorSideBar = () => {
     const isWebsiteBranch = pathname.startsWith("/educator/site-builder")
     return (
         <>
-            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="sticky left-0 z-10 top-0 shadow-2xl bg-white h-screen w-80 overflow-y-auto overflow-x-visible scrollbar-none ">
+            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="sticky left-0 z-10 top-0 shadow-2xl bg-white h-screen w-75 overflow-y-auto overflow-x-visible scrollbar-none ">
                 <div className="container w-full h-full py-3 px-5 scrollb">
                     {/* <h1 className="text-3xl text-primary font-bold my-5">StudySphere</h1> */}
                     <Image src={'/logo.png'} width={175} height={100} alt='logo'></Image>

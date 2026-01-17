@@ -9,12 +9,13 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-export const CourseCard = ({ name, price, createdBy, validity }) => {
+export const CourseCard = ({ name, price, createdBy, validity ,thumbnail}) => {
+    console.log(thumbnail,'thumbnail')
     return (
         <>
             <Card className="bg-white relative max-w-70 mx-1 gap-2 h-96 my-4 rounded-2xl shadow-md hover:shadow-xl transition-shadow cursor-pointer py-0">
                 <CardHeader className="p-0">
-                    <Image src={courseImg} height={400} width={400} className="rounded-t-2xl" alt="Courses"></Image>
+                    <Image src={thumbnail || courseImg } unoptimized={true} height={100} width={300} className="rounded-t-2xl text-center" alt="Image Illustration"></Image>
                 </CardHeader>
                 <CardContent className="px-4">
                     <p className="font-semibold">{name}</p>
