@@ -23,7 +23,7 @@ export const Header = (props) => {
       transition: { duration: 0.3 },
     },
   }
-  const [input,setInput] = useState('')
+  const [input, setInput] = useState('')
   return (
     <>
       <motion.header variants={containerVariants} initial="hidden" animate="visible" className="sticky z-10 top-0 bg-cover bg-no-repeat  py-2  bg-center  bg-white shadow">
@@ -40,7 +40,7 @@ export const Header = (props) => {
             </div>
             <Bell className="h-5"></Bell>
             <Avatar className="">
-              <AvatarImage src={"https://github.com/shadcn.png"} />
+              <AvatarImage src={"https://github.com/shadcn.png"} alt="User Avatar" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>

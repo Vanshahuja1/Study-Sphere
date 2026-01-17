@@ -148,7 +148,7 @@ export default function GlobalCourses() {
                                                 <SelectTrigger className='bg-white  w-full p-2 rounded-xl'>
                                                     <SelectValue placeholder="Categories"></SelectValue>
                                                 </SelectTrigger>
-                                                <SelectContent 
+                                                <SelectContent
                                                     sideOffset={4}
                                                     className="w-(--radix-select-trigger-width) z-100">
                                                     <SelectItem value="poltical">Political Science</SelectItem>
@@ -161,18 +161,18 @@ export default function GlobalCourses() {
                                             <h3 className='text-gray-900 font-semibold my-2'>Course Type</h3>
                                             <RadioGroup className="flex flex-col gap-1">
 
-                                            <div className="flex gap-2 text-gray-700 my-1 ">
-                                                <RadioGroupItem className="bg-white " value="me" id='me' />
-                                                <Label htmlFor="me">Created by me</Label>
-                                            </div>
-                                            <div className="flex gap-2 text-gray-700 my-1">
-                                                <RadioGroupItem className="bg-white" value="institute" id='institute' />
-                                                <Label htmlFor="institute">Created by Institute</Label>
-                                            </div>
-                                            <div className="flex gap-2 text-gray-700 my-1 ">
-                                                <RadioGroupItem className="bg-white text-black" value="imported" id='imported' />
-                                                <Label htmlFor="imported">imported Course</Label>
-                                            </div>
+                                                <div className="flex gap-2 text-gray-700 my-1 ">
+                                                    <RadioGroupItem className="bg-white " value="me" id='me' />
+                                                    <Label htmlFor="me">Created by me</Label>
+                                                </div>
+                                                <div className="flex gap-2 text-gray-700 my-1">
+                                                    <RadioGroupItem className="bg-white" value="institute" id='institute' />
+                                                    <Label htmlFor="institute">Created by Institute</Label>
+                                                </div>
+                                                <div className="flex gap-2 text-gray-700 my-1 ">
+                                                    <RadioGroupItem className="bg-white text-black" value="imported" id='imported' />
+                                                    <Label htmlFor="imported">imported Course</Label>
+                                                </div>
                                             </RadioGroup>
                                         </div>
                                         <div className="bg-indigo-50 p-3 shadow-sm flex flex-col rounded-xl">
@@ -229,9 +229,18 @@ export default function GlobalCourses() {
                         <button className="text-primary border  bg-white hover:text-white hover:bg-primary cursor-pointer border-primary p-3 rounded-xl">View All</button>
                     </div>
                     <Slider {...horizontalSettings}>
-                        {globalCoursesData.map((course) => {
-                            return <CourseCard key={course.id} name={course.CourseName} validity={course.validity} price={course.price} createdBy={course.createdBy} />
-                        })}
+                        {courses && courses.length > 0 ? (
+                            courses.map((course) => (
+                                <CourseCard
+                                    key={course.id}
+                                    name={course.CourseName || course.title}
+                                    validity={course.validity || course.validity_type}
+                                    price={course.price || course.discounted_price}
+                                    createdBy={course.createdBy || course.created_By}
+                                    thumbnail={course.thumbnail}
+                                />
+                            ))
+                        ) : null}
                     </Slider>
 
                     <div className="my-5 flex w-240 justify-between items-center">
@@ -239,9 +248,19 @@ export default function GlobalCourses() {
                         <button className="text-primary border hover:text-white hover:bg-primary cursor-pointer border-primary p-3 bg-white rounded-xl">View All</button>
                     </div>
                     <Slider {...verticalSettings}>
-                        {globalCoursesData.map((course) => {
-                            return <CourseCard2 key={course.id} name={course.CourseName} validity={course.validity} price={course.price} imported={course.imported} createdBy={course.createdBy} />
-                        })}
+                        {courses && courses.length > 0 ? (
+                            courses.map((course) => (
+                                <CourseCard2
+                                    key={course.id}
+                                    name={course.CourseName || course.title}
+                                    validity={course.validity || course.validity_type}
+                                    price={course.price || course.discounted_price}
+                                    imported={course.imported}
+                                    createdBy={course.createdBy || course.created_By}
+                                    thumbnail={course.thumbnail}
+                                />
+                            ))
+                        ) : null}
                     </Slider>
 
                     <div className="my-5 flex w-240 justify-between items-center">
@@ -249,9 +268,18 @@ export default function GlobalCourses() {
                         <button className="text-primary border hover:text-white hover:bg-primary cursor-pointer border-primary p-3 bg-white rounded-xl">View All</button>
                     </div>
                     <Slider {...horizontalSettings}>
-                        {globalCoursesData.map((course) => {
-                            return <CourseCard key={course.id} name={course.CourseName} validity={course.validity} price={course.price} createdBy={course.createdBy} />
-                        })}
+                        {courses && courses.length > 0 ? (
+                            courses.map((course) => (
+                                <CourseCard
+                                    key={course.id}
+                                    name={course.CourseName || course.title}
+                                    validity={course.validity || course.validity_type}
+                                    price={course.price || course.discounted_price}
+                                    createdBy={course.createdBy || course.created_By}
+                                    thumbnail={course.thumbnail}
+                                />
+                            ))
+                        ) : null}
                     </Slider>
                 </div>
             </motion.section>
