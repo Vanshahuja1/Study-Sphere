@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { requestOtp, verifyOtp } from "@/services/auth";
-import { setAuthToken } from "@/utils/storage";
+import { setAccessToken, setAuthToken, setRefreshToken } from "@/utils/storage";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +16,9 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [loading, setLoading] = useState(false);
-  const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
+  const inputsRef = useRef<(HTMLInputElement | null)[]>(
+    Array(OTP_LENGTH).fill(null)
+  );
 
   const handleSendPhoneOTP = async () => {
     if (phoneNumber.replace(/\D/g, "").length < 10) {
@@ -63,7 +65,8 @@ const LoginPage = () => {
     try {
       setLoading(true);
       const res = await verifyOtp(identifier, code);
-      setAuthToken(res.token);
+      setAccessToken(res.access);
+      setRefreshToken(res.refresh)
       toast.success("OTP Verified! Welcome to StudySphere 🎉");
 
       if (res.role === "admin") router.push("/admin");
@@ -136,7 +139,7 @@ const LoginPage = () => {
       <ToastContainer position="top-right" autoClose={3000} theme="light" />
 
       {/* Main Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-900 via-blue-900 to-slate-900" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-br from-indigo-900 via-blue-900 to-slate-900" />
       <div
         className="absolute inset-0 -z-10 opacity-25"
         style={{
@@ -200,7 +203,7 @@ const LoginPage = () => {
             >
               <div className="max-w-sm ml-auto lg:mr-16 text-white">
                 <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">
-                  <span className="text-transparent bg-gradient-to-r from-purple-700 to-indigo-700 bg-clip-text">
+                  <span className="text-transparent bg-linear-to-r from-purple-700 to-indigo-700 bg-clip-text">
                     StudySphere
                   </span>
                 </h1>
@@ -249,7 +252,9 @@ const LoginPage = () => {
                       {Array.from({ length: OTP_LENGTH }).map((_, idx) => (
                         <input
                           key={idx}
-                          ref={(el) => (inputsRef.current[idx] = el)}
+                          ref={(el) => {
+                            inputsRef.current[idx] = el;
+                          }}
                           maxLength={1}
                           value={otp[idx]}
                           onChange={(e) => handleChange(idx, e.target.value)}
@@ -334,7 +339,9 @@ const LoginPage = () => {
                       {Array.from({ length: OTP_LENGTH }).map((_, idx) => (
                         <input
                           key={idx}
-                          ref={(el) => (inputsRef.current[idx] = el)}
+                          ref={(el) => {
+                            inputsRef.current[idx] = el;
+                          }}
                           maxLength={1}
                           value={otp[idx]}
                           onChange={(e) => handleChange(idx, e.target.value)}

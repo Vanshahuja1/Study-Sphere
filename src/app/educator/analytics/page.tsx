@@ -104,8 +104,8 @@ export default function EducatorAnalytics() {
                                 })}
                             </TabsList>
                             <TabsContent value="Website Sessions" className="bg-white rounded-2xl py-5 shadow-md">
-                                <div className="h-100 w-full text-xs p-3">
-                                    <ResponsiveContainer width="100%" height="100%">
+                                <div className="h-80 w-full text-xs p-3 ">
+                                    <ResponsiveContainer width="100%" height={400}>
                                         <LineChart data={data}>
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="name" />
@@ -125,7 +125,7 @@ export default function EducatorAnalytics() {
                                 className="bg-white rounded-2xl py-5 shadow-xl"
                             >
                                 <div className="h-100 w-full p-3 text-xs">
-                                    <ResponsiveContainer width="100%" height="100%">
+                                    <ResponsiveContainer width="100%" height={400}>
                                         <LineChart data={clicksData}>
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="name" />
@@ -143,7 +143,7 @@ export default function EducatorAnalytics() {
                                 className="bg-white rounded-2xl py-5 shadow-xl"
                             >
                                 <div className="h-100 w-full p-3 text-xs">
-                                    <ResponsiveContainer width="100%" height="100%">
+                                    <ResponsiveContainer width="100%" height={400}>
                                         <LineChart data={transactionsData}>
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="name" />

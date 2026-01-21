@@ -210,7 +210,7 @@ export default function EducatorCreateCourse() {
       setCurrentStep(prev => prev - 1);
     }
   }
-console.log(createCourseData)
+// console.log(createCourseData)
   return (
     <main className="w-full bg-slate-50 min-h-screen pb-24">
       <Header heading='Create Course' para='Setup your course details, pricing and features' />

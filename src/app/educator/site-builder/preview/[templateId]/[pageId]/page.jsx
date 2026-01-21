@@ -1,7 +1,7 @@
 "use client"
 import { LucideX } from "lucide-react";
 import { EditPageHeader } from "@/components/editPageHeader";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import TemplateRenderer from "@/components/templateRenderer";
 import { templates } from "@/lib/templateLoader";
 import { EditPanel } from "@/components/editPanel";
@@ -18,10 +18,6 @@ const lato = Lato({
   subsets: ['latin'],
   weight: ['400', '700']
 })
-// const monoton =Monoton({
-//   subsets:['latin'],
-//   weight:['400','700']
-// })
 const WorkSans = Work_Sans({
   subsets: ['latin'],
   weight: ['400', '700']
@@ -38,9 +34,7 @@ const fontMap = {
   "Merriweather Sans": MerriweatherSans.className
 };
 export default function PreviewPage() {
-  const searchParams = useSearchParams();
-  const templateId = searchParams.get("template");
-  const pageId = searchParams.get("page")
+  const { templateId, pageId } = useParams()
   const template = templates[templateId];
   const pageData = template?.pages?.[pageId];
   if (!template) return <div className="p-8">Template not found</div>;
@@ -51,7 +45,7 @@ export default function PreviewPage() {
   const [visible, setVisible] = useState(false)
   const [showAddPanel, setShowAddPanel] = useState(false)
   const [selectedSection, setSelectedSection] = useState(null)
-
+  console.log(templateId,pageId)
   useEffect(() => {
     const newPageData = template.pages[pageId];
     setSections(newPageData.sections || []);
