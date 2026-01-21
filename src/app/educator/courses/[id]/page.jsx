@@ -1,8 +1,16 @@
+'use client'
 import { Header } from "@/components/Header"
 import Image from "next/image"
 import courseImg from '../../../../../public/Course-card.png'
+import {use} from "react"
 import { File, Folder, Camera, Speaker, Volume2, Cuboid, PlusCircle } from "lucide-react"
-export default function CourseOverview() {
+import { useEducator } from "@/app/educatorContext/educatorContext"
+export default function CourseOverview({params}) {
+     const { id } = use(params);
+    const {courses} = useEducator();
+    const course = courses.find(c=>c.id===id)
+    console.log(courses,'courseoveriew')
+    //   if (!course) return <div>Course not found</div>;
     return (
         <>
             <main className="bg-gray-100 w-full">
@@ -15,7 +23,7 @@ export default function CourseOverview() {
                                 {/* courses text */}
                                 <div className="w-1/2 ">
                                     <h2 className="text-gray-900 text-lg ">Course Name</h2>
-                                    <p className="text-gray-700 ">Geography Climate of India</p>
+                                    <p className="text-gray-700 ">Geography</p>
 
                                     <h2 className="text-gray-900 mt-4 text-lg">Description</h2>
                                     <p className="text-gray-700 ">

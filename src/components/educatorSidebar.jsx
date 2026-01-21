@@ -1,5 +1,5 @@
 'use client'
-import { ArrowRightFromLine, Book, Globe, Landmark, LayoutDashboard, Pen, UserCircle2Icon, TabletSmartphone, User, MessageCircleMore, FileArchive, LucideWebhook, SpeechIcon, Users, LucideChartColumn } from 'lucide-react';
+import { ArrowRightFromLine, Book, Globe, Landmark, LayoutDashboard, Pen, UserCircle2Icon, TabletSmartphone, User, MessageCircleMore, FileArchive, LucideWebhook, SpeechIcon, Users, LucideChartColumn, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from "framer-motion"
 import { usePathname } from 'next/navigation';
@@ -32,27 +32,32 @@ export const EducatorSideBar = () => {
         }
     }
     const ListItem = ({ pathName, heading, icon }) => {
-        return <Link href={pathName}><li className={`flex gap-2 hover:text-primary hover:bg-indigo-100 rounded-2xl py-3 px-3  ${pathname === pathName ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}>{icon}{heading}</li></Link>
+        return <Link href={pathName}><li className={`flex gap-2 w-45 hover:text-primary hover:bg-indigo-100 rounded-2xl py-3 px-3  ${pathname === pathName ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}>{icon}{heading}</li></Link>
     }
     const isCoursesBranch = pathname.startsWith("/educator/courses")
     const isPeopleBranch = pathname.startsWith("/educator/people")
     const isWebsiteBranch = pathname.startsWith("/educator/site-builder")
     return (
         <>
-            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="sticky left-0 z-10 top-0 shadow-2xl bg-white h-screen w-75 overflow-y-auto overflow-x-visible scrollbar-none ">
+            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="sticky left-0 z-10 top-0 shadow-2xl bg-white h-screen w-70 overflow-y-auto overflow-x-visible scrollbar-none ">
                 <div className="container w-full h-full py-3 px-5 scrollb">
                     {/* <h1 className="text-3xl text-primary font-bold my-5">StudySphere</h1> */}
-                    <Image src={'/logo.png'} width={175} height={100} alt='logo'></Image>
+                  <div className="flex items-center gap-3 mb-7 mt-4">
+                              <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center">
+                                <GraduationCap className="w-7 h-7 text-white" />
+                              </div>
+                              <span className="text-xl font-bold text-gray-900">StudySphere</span>
+                            </div>
                     {/* overview */}
 
                     <div className="flex flex-col my-5 gap-1 text-gray-700 ">
                         <h3 className="text-xl font-bold text-primary mb-2 px-2">Overview</h3>
                         <ListItem pathName={'/educator'} heading='Dashboard' icon={<LayoutDashboard />}></ListItem>
                         <HoverCard>
-                        <HoverCardTrigger>
-                       <li className={`inline-flex gap-2 w-45 rounded-2xl p-3 hover:text-primary hover:bg-indigo-100 cursor-pointer ${isWebsiteBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}> <Globe/>Website</li>
-                        </HoverCardTrigger>
-                         <HoverCardContent side="right"
+                            <HoverCardTrigger>
+                                <li className={`inline-flex gap-2 w-45 rounded-2xl p-3 hover:text-primary hover:bg-indigo-100 cursor-pointer ${isWebsiteBranch ? 'text-primary font-semibold bg-gradient-to-r from-purple-200 to-indigo-200' : ''}`}> <Globe />Website</li>
+                            </HoverCardTrigger>
+                            <HoverCardContent side="right"
                                 align="start"
                                 className="z-50 w-50 p-2">
                                 <Link href={'/educator/site-builder'} className=''>

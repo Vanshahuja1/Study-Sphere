@@ -19,6 +19,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox"
+import { useEducator } from '@/app/educatorContext/educatorContext'
 
 
 export default function EducatorCourses() {
@@ -50,7 +51,7 @@ export default function EducatorCourses() {
     { id: 5, CourseName: "Indain Art & Culture", createdBy: "OneAim IT Solutions", validity: "Lifetime Validity", price: 1000 },
     { id: 6, CourseName: "Indain Art & Culture", createdBy: "OneAim IT Solutions", validity: "Lifetime Validity", price: 1000 }
   ]
-  const [courses, setCourses] = useState([])
+  const {courses,setCourses} = useEducator()
   const [lowerLimit, setLowerLimit] = useState("");
   const [upperLimit, setUpperLimit] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false)
@@ -265,7 +266,7 @@ export default function EducatorCourses() {
                     {myCoursesData.map((item) => {
                       return <div key={item.id} className="flex gap-4 hover:shadow-sm  border-b border-gray-200 py-4 px-2 rounded-xl">
                         <input type="checkbox" name="" id="" />
-                        <Image src={courseCardImg} width={100} height={100} alt='course image'></Image>
+                        <Image src={courseCardImg} width={100} height={100} alt={item.CourseName || "Course Image"}></Image>
                         <p className='font-semibold'>{item.CourseName}</p>
                       </div>
                     })}
@@ -288,10 +289,24 @@ export default function EducatorCourses() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-5 my-6">
-            {courses.map((course) => {
-              return <CourseCard key={course.id} name={course.title} validity={course.validity_type} price={course.discounted_price} createdBy={course.created_by} thumbnail={course.thumbnail} />
-            })}
-
+            {courses && courses.length > 0 ? (
+              courses.map((course) => (
+                <Link href={`/educator/courses/${course.id}`} key={course.id}>
+                <CourseCard
+                  key={course.id}
+                  name={course.title}
+                  validity={course.validity_type}
+                  price={course.discounted_price}
+                  createdBy={course.created_by}
+                  thumbnail={course.thumbnail}
+                  />
+                  </Link>
+              ))
+            ) : (
+              <div className="col-span-4 py-20 text-center text-gray-500">
+                No courses found.
+              </div>
+            )}
           </div>
         </div>
       </motion.section>
