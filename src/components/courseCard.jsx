@@ -41,7 +41,7 @@ export const CourseCard = ({ name, price, createdBy, validity, thumbnail }) => {
                 <CardContent className="px-4">
                     <p className="font-semibold line-clamp-2">{name}</p>
                     <p className="text-gray-600 mt-2 mb-1 text-sm">Created by You ({createdBy})</p>
-                    <p className="text-primary  text-sm mt-2 inline-block font-semibold bg-linear-to-r from-indigo-100 bg-size-[100%_100%] to-white px-3 w-40 py-1 rounded">{validity}</p>
+                    <p className="text-primary  text-sm mt-2 inline-block font-semibold bg-linear-to-r from-secondary bg-size-[100%_100%] to-white px-3 w-40 py-1 rounded">{validity}</p>
                     <p className=" absolute bottom-0 font-bold text-lg my-4">₹{price}</p>
                 </CardContent>
             </Card>

@@ -30,7 +30,7 @@ export const CourseCard2 = ({ name, price, createdBy, validity, imported, thumbn
                 <div className="px-4 my-3 relative w-full bg-white">
                     <p className="font-semibold text-medium overflow-hidden mt-3 line-clamp-2">{name}</p>
                     <p className="text-gray-600 my-2 text-sm">{createdBy}</p>
-                    <span className="text-primary text-sm mt-3 inline font-semibold bg-linear-to-r from-indigo-100 bg-size-[100%_100%] to-white px-3 w-40 py-1 rounded">Imported by {imported} tutors</span>
+                    <span className="text-primary text-sm mt-3 inline font-semibold bg-linear-to-r from-secondary bg-size-[100%_100%] to-white px-3 w-40 py-1 rounded">Imported by {imported} tutors</span>
                     <p className=" absolute bottom-0 font-bold text-lg mt-5">₹{price}</p>
                 </div>
             </div>

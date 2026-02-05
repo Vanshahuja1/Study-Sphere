@@ -38,10 +38,10 @@
     "**/*.tsx",
     "src/app/(root)/auth/page.jsx",
     "src/app/student/[id]/page.js",
-    "src/app/educator/courses/page.jsx",
+    "src/app/educator/[org]/courses/page.jsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "src/app/educator/[org]/site-builder/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -37,3 +37,13 @@ export async function onboardInstructor(formData: FormData) {
   }>("/auth/onboard-instructor/", formData);
 }
 
+export async function RegisterOrg(formData:FormData){
+  return await http.post('/auth/register-org/',formData)
+}
+
+export async function LoginOrg(formData:FormData){
+  return await http.post('/auth/login-org/',formData)
+}
+export async function VerifyOrgOtp(formData:FormData){
+  return await http.post('/auth/verify-org-top/',formData)
+}

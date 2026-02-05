@@ -2,12 +2,12 @@ import { LucideEye, Settings, Edit } from "lucide-react"
 import { motion } from "framer-motion" 
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-const WebsitePage = ({ item, templateId }) => {
+const WebsitePage = ({ item, templateId ,org}) => {
     const router = useRouter()
     console.log(templateId)
     return (
         <>
-            <div className=" group relative flex flex-col w-full items-center gap-3 cursor-pointer shadow-xl hover:transition-transform hover:shadow-2xl hover:scale-107 ease-in-out duration-300 bg-white rounded-xl" onClick={() =>   router.push(`/educator/site-builder/preview/${templateId}/${item}`)}>
+            <div className=" group relative flex flex-col w-full items-center gap-3 cursor-pointer shadow-xl hover:transition-transform hover:shadow-2xl hover:scale-107 ease-in-out duration-300 bg-white rounded-xl" onClick={() =>   router.push(`/educator/${org}/site-builder/preview/${templateId}/${item}`)}>
                 <div className="relative w-full">
                     <Image src={'/webpage.jpg'} alt="'webpage" width={350} className="relative rounded-t-xl" height={350}></Image>
                     

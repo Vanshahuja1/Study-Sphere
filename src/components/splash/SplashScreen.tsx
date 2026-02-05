@@ -40,7 +40,7 @@ const SplashScreen = () => {
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
       
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDuration: '4s' }}></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDuration: '4s' }}></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDuration: '4s', animationDelay: '2s' }}></div>
       </div>
 
@@ -54,7 +54,7 @@ const SplashScreen = () => {
                   cy="40" 
                   r="35" 
                   fill="none" 
-                  stroke="url(#gradient1)" 
+                  stroke="#F2CE74" 
                   strokeWidth="2"
                   strokeDasharray="220"
                   strokeDashoffset="220"
@@ -64,7 +64,7 @@ const SplashScreen = () => {
                 
                 <path 
                   d="M40 15 L55 30 L55 50 L40 65 L25 50 L25 30 Z" 
-                  fill="url(#gradient2)" 
+                  fill="#F2CE74" 
                   className="animate-fadeIn"
                   style={{ animationDelay: '0.5s' }}
                 />
@@ -93,7 +93,7 @@ const SplashScreen = () => {
 
         <div className="mb-8 animate-fadeIn" style={{ animationDelay: '1s' }}>
           <h1 className="text-5xl font-light tracking-tight text-slate-800 mb-3">
-            <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-indigo-700">
+            <span className="font-semibold text-transparent bg-clip-text bg-primary">
               StudySphere
             </span>
           </h1>
@@ -105,7 +105,7 @@ const SplashScreen = () => {
         <div className="w-64 mx-auto animate-fadeIn" style={{ animationDelay: '1.2s' }}>
           <div className="h-1 bg-slate-200 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full transition-all duration-300 ease-out"
+              className="h-full bg-primary  rounded-full transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
@@ -117,7 +117,7 @@ const SplashScreen = () => {
 
       <div className="absolute bottom-8 left-0 right-0 text-center animate-fadeIn" style={{ animationDelay: '1.5s' }}>
         <p className="text-xs text-slate-400 font-medium tracking-wide">
-          Powered by <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-indigo-700">One Aim It Solutions</span>
+          Powered by <span className="font-semibold text-transparent bg-clip-text bg-primary">One Aim It Solutions</span>
         </p>
       </div>
 

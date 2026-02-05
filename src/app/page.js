@@ -38,20 +38,20 @@ export default function Page() {
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <div className="w-3 h-3 bg-white rounded-full" />
             </div>
-            <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
+            <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-primary from-slate-900 to-slate-700">
               StudySphere
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-            <a href="#features" className="hover:text-indigo-600 transition-colors">Features</a>
-            <a href="#roles" className="hover:text-indigo-600 transition-colors">Roles</a>
-            <a href="#why" className="hover:text-indigo-600 transition-colors">Why Us</a>
+            <a href="#features" className="hover:text-primary transition-colors">Features</a>
+            <a href="#roles" className="hover:text-primary transition-colors">Roles</a>
+            <a href="#why" className="hover:text-primary transition-colors">Why Us</a>
           </div>
           <div className="flex items-center gap-4">
-            <button className="px-5 py-2.5 bg-indigo-600 text-white rounded-full text-sm font-semibold hover:bg-indigo-700 transition-all shadow-sm shadow-indigo-200">
+            <button className="px-5 py-2.5 bg-primary text-white rounded-full text-sm font-semibold hover:bg-amber-200 cursor-pointer transition-all shadow-sm shadow-indigo-200">
               Get Started
             </button>
           </div>
@@ -61,12 +61,12 @@ export default function Page() {
       {/* 2. HERO SECTION */}
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary border border-primary text-primary text-xs font-bold uppercase tracking-wider mb-6">
             Enterprise Grade LMS
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-[1.1]">
             Scale Your Institution <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-primary ">
               With One Simple Cloud.
             </span>
           </h1>
@@ -78,7 +78,7 @@ export default function Page() {
               Launch Digital Classroom
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-full font-bold hover:bg-slate-50 transition-all">
+            <button className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-full font-bold hover:bg-primary hover:text-white cursor-pointer transition-all">
               Book a Demo
             </button>
           </div>
@@ -86,7 +86,7 @@ export default function Page() {
       </section>
 
       {/* 3. ROLE-BASED FEATURES */}
-      <section id="roles" className="py-24 px-6 bg-slate-50/50">
+      <section id="roles" className="py-24 px-6 bg-secondary">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Tailored for every stakeholder</h2>
@@ -140,14 +140,14 @@ export default function Page() {
             <h2 className="text-4xl font-bold mb-8">Why leading institutes <br/>choose StudySphere</h2>
             <div className="space-y-6">
               <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                <div className="text-indigo-400"><Zap /></div>
+                <div className="text-primary"><Zap /></div>
                 <div>
                   <h4 className="font-bold">Lightning Fast Deployment</h4>
                   <p className="text-slate-400 text-sm">Go live with your branded app in less than 48 hours.</p>
                 </div>
               </div>
               <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                <div className="text-indigo-400"><ShieldCheck /></div>
+                <div className="text-primary"><ShieldCheck /></div>
                 <div>
                   <h4 className="font-bold">100% Content Protection</h4>
                   <p className="text-slate-400 text-sm">Screenshot protection and encrypted video streaming.</p>
@@ -162,7 +162,7 @@ export default function Page() {
             </div>
             <div className="space-y-4">
               <div className="h-2 w-full bg-slate-700 rounded-full overflow-hidden">
-                <div className="h-full bg-indigo-500 w-[70%]" />
+                <div className="h-full bg-primary w-[70%]" />
               </div>
               <div className="h-2 w-full bg-slate-700 rounded-full overflow-hidden">
                 <div className="h-full bg-purple-500 w-[45%]" />
@@ -177,10 +177,10 @@ export default function Page() {
 
       {/* 6. FINAL CTA */}
       <section className="py-24 px-6 text-center">
-        <div className="max-w-4xl mx-auto p-12 rounded-[2.5rem] bg-indigo-50 border border-indigo-100">
+        <div className="max-w-4xl mx-auto p-12 rounded-[2.5rem] bg-secondary border border-primary">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Built for institutions that want to grow.</h2>
           <p className="text-slate-600 mb-10 text-lg">Launch your digital classroom today and give your students a premium experience.</p>
-          <button className="px-10 py-4 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 transition-all">
+          <button className="px-10 py-4 bg-primary text-white rounded-full font-bold transition-all hover:bg-amber-200 cursor-pointer">
             Get Started for Free
           </button>
         </div>
@@ -189,9 +189,9 @@ export default function Page() {
       {/* FOOTER */}
       <footer className="py-12 px-6 border-t border-slate-100 text-center text-slate-500 text-sm">
         <div className="flex justify-center gap-8 mb-6">
-          <a href="#" className="hover:text-indigo-600 transition-colors">Terms</a>
-          <a href="#" className="hover:text-indigo-600 transition-colors">Privacy</a>
-          <a href="#" className="hover:text-indigo-600 transition-colors">Support</a>
+          <a href="#" className="hover:text-primary transition-colors">Terms</a>
+          <a href="#" className="hover:text-primary transition-colors">Privacy</a>
+          <a href="#" className="hover:text-primary transition-colors">Support</a>
         </div>
         © 2025 StudySphere. All rights reserved.
       </footer>
@@ -201,11 +201,11 @@ export default function Page() {
 
 // UI SUB-COMPONENTS (Plain JS)
 function RoleCard({ icon, title, list, color }) {
-  const colorClass = color === "indigo" ? "bg-indigo-50 text-indigo-600" : "bg-purple-50 text-purple-600";
-  const dotClass = color === "indigo" ? "bg-indigo-400" : "bg-purple-400";
+  const colorClass = color === "primary" ? "bg-secondary" : "bg-secondary text-primary";
+  const dotClass = color === "primary" ? "bg-primary" : "bg-primary";
   
   return (
-    <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
+    <div className="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
       <div className={`w-12 h-12 ${colorClass} rounded-2xl flex items-center justify-center mb-6`}>
         {icon}
       </div>
@@ -223,8 +223,8 @@ function RoleCard({ icon, title, list, color }) {
 
 function FeatureItem({ icon, title, desc }) {
   return (
-    <div className="group p-6 rounded-2xl border border-slate-100 hover:border-indigo-100 transition-all">
-      <div className="w-10 h-10 text-indigo-600 mb-4 group-hover:scale-110 transition-transform">{icon}</div>
+    <div className="group p-6 rounded-2xl border border-slate-100 hover:border-primary transition-all">
+      <div className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform">{icon}</div>
       <h4 className="text-lg font-bold mb-2">{title}</h4>
       <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
     </div>
